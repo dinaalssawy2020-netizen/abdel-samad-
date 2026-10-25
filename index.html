@@ -40,85 +40,42 @@ body{background:#0f1418;color:#e8ecef;display:flex;justify-content:center;paddin
 </head>
 <body>
 <div class="wrap">
-<div class="top">
-<h1>عبد الصمد</h1>
-<p class="date" id="gDate">الأحد، 25 أكتوبر 2026</p>
-<div class="doaa"> اللهم أتمم عافيته ويسر أمره </div>
-<div class="badge" id="loc">Giza 📍</div>
-<p class="date" id="hDate">14 جمادى الأولى 1447</p>
-<button class="notif">🔔 فعل تنبيه الأذان</button>
-</div>
-
+<div class="top"><h1>عبد الصمد</h1><p class="date" id="gDate"></p><div class="doaa">اللهم أتمم عافيته ويسر أمره وبارك له. </div><div class="badge" id="loc">Giza 📍</div><p class="date" id="hDate"></p><button class="notif">🔔 فعل تنبيه الأذان</button></div>
 <div class="card-time" id="prayerCard"></div>
-
-<div class="card-sebha">
-<h3 id="zekrText" style="color:#4fc3f7">سبحان الله</h3>
-<div class="circle" id="countBtn">0</div>
-<div class="small"><button id="newWirdBtn">ورد جديد</button><button id="resetBtn">إعادة</button></div>
-</div>
-
-<div class="card-box">
-<div class="title">الرقية الشرعية 🛡️</div>
-<div class="tabs"><button class="tab active" id="tab-masmou3a">مسموعة</button><button class="tab" id="tab-maktouba">مكتوبة</button></div>
-<div id="roqyaContent"></div>
-</div>
-
-<div class="card-box">
-<div class="title">القرآن - إسلام صبحي 🎧</div>
-<input class="search" id="searchSurah" placeholder="ابحث عن سورة...">
-<div class="q-grid" id="qList"></div>
-<div class="player-box" id="playerBox">
-<div style="display:flex;justify-content:space-between;margin-bottom:10px"><span id="playerName" style="color:#4fc3f7;font-size:13px">▶ اضغط على سورة للتشغيل</span><span id="playerTime" style="color:#8a9aa8;font-size:12px">0:00 / 0:00</span></div>
-<div style="display:flex;justify-content:center;gap:15px"><button id="prevBtn" style="background:#232e38;border:1px solid #3a4b5a;color:#4fc3f7;width:38px;height:38px;border-radius:50%">⏮</button><button class="play-btn" id="mainPlayBtn">▶</button><button id="nextBtn" style="background:#232e38;border:1px solid #3a4b5a;color:#4fc3f7;width:38px;height:38px;border-radius:50%">⏭</button></div>
-<div class="progress" id="progress"><div class="progress-bar" id="progressBar"></div></div>
-</div>
-<audio id="qAudio"></audio>
-</div>
-
+<div class="card-sebha"><h3 id="zekrText" style="color:#4fc3f7">سبحان الله</h3><div class="circle" id="countBtn">0</div><div class="small"><button id="newWirdBtn">ورد جديد</button><button id="resetBtn">إعادة</button></div></div>
+<div class="card-box"><div class="title">الرقية الشرعية 🛡️</div><div class="tabs"><button class="tab active" id="tab-masmou3a">مسموعة</button><button class="tab" id="tab-maktouba">مكتوبة</button></div><div id="roqyaContent"></div></div>
+<div class="card-box"><div class="title">القرآن - إسلام صبحي 🎧</div><input class="search" id="searchSurah" placeholder="ابحث عن سورة..."><div class="q-grid" id="qList"></div><div class="player-box" id="playerBox"><div style="display:flex;justify-content:space-between;margin-bottom:10px"><span id="playerName" style="color:#4fc3f7;font-size:13px">▶ اضغط على سورة للتشغيل</span><span id="playerTime" style="color:#8a9aa8;font-size:12px">0:00 / 0:00</span></div><div style="display:flex;justify-content:center;gap:15px"><button id="prevBtn" style="background:#232e38;border:1px solid #3a4b5a;color:#4fc3f7;width:38px;height:38px;border-radius:50%">⏮</button><button class="play-btn" id="mainPlayBtn">▶</button><button id="nextBtn" style="background:#232e38;border:1px solid #3a4b5a;color:#4fc3f7;width:38px;height:38px;border-radius:50%">⏭</button></div><div class="progress" id="progress"><div class="progress-bar" id="progressBar"></div></div></div><audio id="qAudio"></audio></div>
 <div class="ayah">﴿ إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَوْقُوتًا ﴾</div>
-<div class="footer"> created by dinaalssawy <br>All Rights Reserved © 2026</div>
+<div class="footer"> created by dina alssawy <br>All Rights Reserved © 2026</div>
 </div>
-
 <script>
 var weekdays=["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];var months=["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];var now=new Date();document.getElementById('gDate').textContent=weekdays[now.getDay()]+"، "+now.getDate()+" "+months[now.getMonth()]+" "+now.getFullYear();
 var azkar=["سبحان الله","الحمد لله","لا إله إلا الله","الله أكبر","أستغفر الله"];var awrad=["سبحان الله وبحمده 100 مرة","أستغفر الله العظيم 100 مرة","الصلاة على النبي 100 مرة","لا حول ولا قوة إلا بالله 100 مرة"];var idx=0;var cnt=0;var tEl=document.getElementById('zekrText');var cEl=document.getElementById('countBtn');function upd(){cEl.textContent=cnt;}upd();cEl.onclick=function(){cnt++;if(cnt>33){cnt=0;idx=(idx+1)%azkar.length;tEl.textContent=azkar[idx];}upd();};document.getElementById('resetBtn').onclick=function(){cnt=0;upd();};document.getElementById('newWirdBtn').onclick=function(){tEl.textContent=awrad[Math.floor(Math.random()*awrad.length)];cnt=0;upd();};
-
-// رقية - مشغل غامق مش أبيض
 function formatTime(s){if(isNaN(s))return"0:00";var m=Math.floor(s/60);var sec=Math.floor(s%60);return m+":"+(sec<10?"0"+sec:sec);}
-var roqyaAudioHTML='<div style="background:#0f1418;border:1px solid #2a3542;border-radius:14px;padding:12px"><div style="display:flex;justify-content:space-between;margin-bottom:10px"><span style="color:#4fc3f7;font-size:13px">▶ سورة البقرة - رقية</span><span id="roqyaTime" style="color:#8a9aa8;font-size:12px">0:00 / 2:00:37</span></div><div style="display:flex;justify-content:center"><button id="roqyaPlayBtn" style="width:50px;height:50px;border-radius:50%;background:#4fc3f7;border:none;color:#0f1418;font-size:20px;cursor:pointer">▶</button></div><div class="progress" id="roqyaProgress"><div class="progress-bar" id="roqyaProgressBar"></div></div></div><audio id="roqyaAudioEl" style="display:none"><source src="https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/002.mp3"></audio>';
+var roqyaAudioHTML='<div style="background:#0f1418;border:1px solid #2a3542;border-radius:14px;padding:12px"><div style="display:flex;justify-content:space-between;margin-bottom:10px"><span style="color:#4fc3f7;font-size:13px">▶ سورة البقرة - رقية</span><span id="roqyaTime" style="color:#8a9aa8;font-size:12px">0:00 / 0:00</span></div><div style="display:flex;justify-content:center"><button id="roqyaPlayBtn" style="width:50px;height:50px;border-radius:50%;background:#4fc3f7;border:none;color:#0f1418;font-size:20px;cursor:pointer">▶</button></div><div class="progress" id="roqyaProgress"><div class="progress-bar" id="roqyaProgressBar"></div></div></div><audio id="roqyaAudioEl" style="display:none"><source src="https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/002.mp3"></audio>';
 var roqyaTextHTML='<div style="line-height:2;font-size:14px;color:#d7e1eb">بسم الله أرقيك من كل شيء يؤذيك<br>من شر كل نفس أو عين حاسد الله يشفيك<br><br>الفاتحة 7 مرات - آية الكرسي - آخر آيتين من البقرة - المعوذات 3 مرات</div>';
 document.getElementById('roqyaContent').innerHTML=roqyaAudioHTML;
+function initRoqya(){var a=document.getElementById('roqyaAudioEl');var b=document.getElementById('roqyaPlayBtn');var bar=document.getElementById('roqyaProgressBar');var time=document.getElementById('roqyaTime');var prog=document.getElementById('roqyaProgress');if(!a)return;b.onclick=function(){if(a.paused){a.play();}else{a.pause();}};a.addEventListener('play',function(){b.textContent="⏸";});a.addEventListener('pause',function(){b.textContent="▶";});a.addEventListener('timeupdate',function(){bar.style.width=(a.currentTime/a.duration)*100+"%";time.textContent=formatTime(a.currentTime)+" / "+formatTime(a.duration);});prog.onclick=function(e){var r=this.getBoundingClientRect();a.currentTime=((e.clientX-r.left)/r.width)*a.duration;};}
 setTimeout(initRoqya,100);
-function initRoqya(){
-var roqyaAudioEl=document.getElementById('roqyaAudioEl');var roqyaPlayBtn=document.getElementById('roqyaPlayBtn');var roqyaProgressBar=document.getElementById('roqyaProgressBar');var roqyaTime=document.getElementById('roqyaTime');var roqyaProgress=document.getElementById('roqyaProgress');
-if(!roqyaAudioEl)return;
-roqyaPlayBtn.onclick=function(){if(roqyaAudioEl.paused){roqyaAudioEl.play();}else{roqyaAudioEl.pause();}};
-roqyaAudioEl.addEventListener('play',function(){roqyaPlayBtn.textContent="⏸";});
-roqyaAudioEl.addEventListener('pause',function(){roqyaPlayBtn.textContent="▶";});
-roqyaAudioEl.addEventListener('timeupdate',function(){roqyaProgressBar.style.width=(roqyaAudioEl.currentTime/roqyaAudioEl.duration)*100+"%";roqyaTime.textContent=formatTime(roqyaAudioEl.currentTime)+" / "+formatTime(roqyaAudioEl.duration||7260);});
-roqyaProgress.onclick=function(e){var r=this.getBoundingClientRect();roqyaAudioEl.currentTime=((e.clientX-r.left)/r.width)*roqyaAudioEl.duration;};
-}
 document.getElementById('tab-masmou3a').onclick=function(){this.classList.add('active');document.getElementById('tab-maktouba').classList.remove('active');document.getElementById('roqyaContent').innerHTML=roqyaAudioHTML;setTimeout(initRoqya,100);};
 document.getElementById('tab-maktouba').onclick=function(){this.classList.add('active');document.getElementById('tab-masmou3a').classList.remove('active');document.getElementById('roqyaContent').innerHTML=roqyaTextHTML;};
 
-// قرآن - من غير 00 و جنب بعض
 var suras=["الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه","الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم","لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر","فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج","نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس","التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد","الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات","القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر","المسد","الإخلاص","الفلق","الناس"];
 var qListEl=document.getElementById('qList');var qAudio=document.getElementById('qAudio');var playerName=document.getElementById('playerName');var playerTime=document.getElementById('playerTime');var mainPlayBtn=document.getElementById('mainPlayBtn');var progressBar=document.getElementById('progressBar');var currentIndex=-1;
-function playSurah(num){currentIndex=num-1;qAudio.src='https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/'+String(num).padStart(3,'0')+'.mp3';qAudio.play();playerName.textContent="▶ الآن: "+suras[currentIndex];mainPlayBtn.textContent="⏸";build(document.getElementById('searchSurah').value);}
+function playSurah(num){currentIndex=num-1;qAudio.src='https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/'+String(num).padStart(3,'0')+'.mp3';qAudio.load();qAudio.play().catch(()=>{});playerName.textContent="▶ الآن: "+suras[currentIndex];mainPlayBtn.textContent="⏸";build(document.getElementById('searchSurah').value);}
 function build(f){f=f||'';qListEl.innerHTML='';for(var i=0;i<suras.length;i++){var name=suras[i];var num=i+1;if(f&&name.indexOf(f)===-1)continue;var div=document.createElement('div');div.className='q-item'+(i===currentIndex?' active':'');div.innerHTML='<span style="color:#8a9aa8">'+num+'</span><span>'+name+(i===currentIndex?' ▶':'')+'</span>';(function(n){div.onclick=function(){playSurah(n);};})(num);qListEl.appendChild(div);}}
 build();
 document.getElementById('searchSurah').addEventListener('input',function(e){build(e.target.value);});
 mainPlayBtn.onclick=function(){if(qAudio.paused){qAudio.play();}else{qAudio.pause();}};
 document.getElementById('nextBtn').onclick=function(){if(currentIndex<113)playSurah(currentIndex+2);};
 document.getElementById('prevBtn').onclick=function(){if(currentIndex>0)playSurah(currentIndex);};
-qAudio.addEventListener('timeupdate',function(){progressBar.style.width=(qAudio.currentTime/qAudio.duration)*100+"%";playerTime.textContent=formatTime(qAudio.currentTime)+" / "+formatTime(qAudio.duration);});
-qAudio.addEventListener('ended',function(){if(currentIndex<113)playSurah(currentIndex+2);});
+qAudio.addEventListener('timeupdate',function(){if(qAudio.duration){progressBar.style.width=(qAudio.currentTime/qAudio.duration)*100+"%";playerTime.textContent=formatTime(qAudio.currentTime)+" / "+formatTime(qAudio.duration);}if(qAudio.duration && qAudio.currentTime >= qAudio.duration - 0.8 && !qAudio._auto){qAudio._auto=true;setTimeout(function(){qAudio._auto=false;if(currentIndex<113)playSurah(currentIndex+2);},1000);}});
+qAudio.addEventListener('ended',function(){if(currentIndex<113){setTimeout(function(){playSurah(currentIndex+2);},700);}});
 qAudio.addEventListener('play',function(){mainPlayBtn.textContent="⏸";});
 qAudio.addEventListener('pause',function(){mainPlayBtn.textContent="▶";});
 document.getElementById('progress').onclick=function(e){var r=this.getBoundingClientRect();qAudio.currentTime=((e.clientX-r.left)/r.width)*qAudio.duration;};
-
 async function loadPrayer(){try{var ip=await fetch('https://ipapi.co/json/').then(r=>r.json());document.getElementById('loc').textContent=(ip.city||'Giza')+' 📍';var data=await fetch('https://api.aladhan.com/v1/timingsByCity?city='+(ip.city||'Giza')+'&country='+(ip.country_name||'Egypt')+'&method=5').then(r=>r.json());var t=data.data.timings;document.getElementById('prayerCard').innerHTML='<div class="row-time"><span>الفجر</span><span>'+t.Fajr.substring(0,5)+'</span></div><div class="row-time"><span>الظهر</span><span>'+t.Dhuhr.substring(0,5)+'</span></div><div class="row-time"><span>العصر</span><span>'+t.Asr.substring(0,5)+'</span></div><div class="row-time"><span>المغرب</span><span>'+t.Maghrib.substring(0,5)+'</span></div><div class="row-time"><span>العشاء</span><span>'+t.Isha.substring(0,5)+'</span></div>';document.getElementById('hDate').textContent=data.data.date.hijri.day+' '+data.data.date.hijri.month.ar+' '+data.data.date.hijri.year;}catch(e){}}
 loadPrayer();
 </script>
 </body>
-</html>
+  </html>
