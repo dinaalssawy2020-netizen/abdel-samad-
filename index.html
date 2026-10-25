@@ -9,35 +9,43 @@
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Tajawal',sans-serif}
 body{background:#0f1418;color:#e8ecef;display:flex;justify-content:center;padding:16px}
 .wrap{width:100%;max-width:410px}
-.top{text-align:center;padding:18px 0}
-.top h1{font-size:28px;color:#4fc3f7}
-.doaa{margin:14px 0;background:#1d242b;border:1px solid #2a3542;border-radius:18px;padding:14px;font-size:14px;line-height:1.8;color:#4fc3f7}
-.badge{margin:10px auto;display:flex;align-items:center;justify-content:center;gap:6px;background:#1d242b;border:1px solid #2a3542;color:#4fc3f7;padding:8px 16px;border-radius:20px;font-size:13px;width:fit-content}
-.date{color:#4fc3f7;font-size:13px;margin-top:8px}
-.notif{margin:12px auto;display:block;background:transparent;border:1px solid #3a4b5a;color:#4fc3f7;padding:9px 18px;border-radius:20px;font-size:13px}
-.card-time{background:#1c242c;border:1px solid #2a3542;border-radius:22px;padding:16px;margin:16px 0}
-.row-time{display:flex;justify-content:space-between;background:#232e38;border-radius:14px;padding:14px 16px;margin-bottom:10px}
-.card-sebha{background:#1c242c;border:1px solid #2a3542;border-radius:22px;padding:24px;text-align:center;margin-bottom:16px}
-.circle{width:115px;height:115px;margin:18px auto;border-radius:50%;border:2.5px solid #4fc3f7;display:flex;align-items:center;justify-content:center;font-size:42px;cursor:pointer}
-.small{margin-top:10px;display:flex;justify-content:center;gap:28px}
-.small button{background:none;border:none;color:#4fc3f7;font-size:13px;cursor:pointer}
-.card-box{background:#1c242c;border:1px solid #3a4b5a;border-radius:22px;padding:18px;margin-bottom:16px}
-.ayah{ text-align:center; color:#4fc3f7; font-size:13px; margin:18px 0; }
-.footer{text-align:center;font-size:12px;margin:26px 0 10px;line-height:1.8;color:#4fc3f7}
+.top{text-align:center;padding:10px 0}
+.top h1{font-size:32px;color:#4fc3f7;font-weight:700}
+.doaa{margin:16px 0;background:#1c242c;border:1px solid #2a3542;border-radius:22px;padding:16px;font-size:15px;line-height:1.8;color:#4fc3f7;text-align:center}
+.badge{margin:10px auto;display:flex;align-items:center;justify-content:center;gap:6px;background:#1c242c;border:1px solid #2a3542;color:#4fc3f7;padding:8px 16px;border-radius:20px;font-size:14px;width:fit-content}
+.date{color:#4fc3f7;font-size:14px;margin-top:10px}
+.notif{margin:14px auto;display:block;background:transparent;border:1px solid #3a4b5a;color:#4fc3f7;padding:10px 20px;border-radius:22px;font-size:14px}
+.card-time{background:#1c242c;border:1px solid #3a4b5a;border-radius:22px;padding:16px;margin:16px 0}
+.row-time{display:flex;justify-content:space-between;background:#232e38;border-radius:14px;padding:14px 16px;margin-bottom:10px;font-size:15px}
+.card-sebha{background:#1c242c;border:1px solid #3a4b5a;border-radius:22px;padding:24px;text-align:center;margin-bottom:16px}
+.circle{width:115px;height:115px;margin:18px auto;border-radius:50%;border:2.5px solid #4fc3f7;display:flex;align-items:center;justify-content:center;font-size:42px;cursor:pointer;background:#0f1418}
+.small{margin-top:10px;display:flex;justify-content:center;gap:32px}
+.small button{background:none;border:none;color:#4fc3f7;font-size:14px;cursor:pointer}
+.card-box{background:#1c242c;border:1.5px solid #3a4b5a;border-radius:22px;padding:18px;margin-bottom:16px}
+.card-box .title{color:#4fc3f7;font-size:18px;font-weight:700;margin-bottom:14px;text-align:right}
+.tabs{display:flex;gap:10px;margin-bottom:14px}
+.tab{flex:1;padding:10px;border-radius:12px;border:1.5px solid #3a4b5a;background:#232e38;color:#8a9aa8;font-size:14px}
+.tab.active{border-color:#4fc3f7;background:#253543;color:#4fc3f7}
+.search{width:100%;padding:12px 14px;border-radius:12px;border:1.5px solid #3a4b5a;background:#232e38;color:#fff;margin-bottom:12px;font-size:13px}
+.q-item{display:flex;justify-content:space-between;background:#232e38;border-radius:12px;padding:14px 16px;margin-bottom:8px;font-size:14px;cursor:pointer}
+.q-item.active{border:1px solid #4fc3f7;background:#253543}
+.ayah{text-align:center;color:#4fc3f7;font-size:13px;margin:20px 0;line-height:1.8}
+.footer{text-align:center;font-size:13px;margin:24px 0 10px;line-height:1.8;color:#4fc3f7}
 </style>
 </head>
 <body>
 <div class="wrap">
+
 <div class="top">
 <h1>عبد الصمد</h1>
-<p class="date" id="gDate"></p>
-<div class="doaa">عافيته</div>اللهم أتمم 
-<div class="badge" id="loc">Giza 📍</div>
+<p class="date" id="gDate">الأحد، 25 أكتوبر 2026</p>
+<div class="doaa">اللهم أتمم عافيته ويسر أمره </div>
+<div class="badge">📍 Giza</div>
 <p class="date" id="hDate">14 جمادى الأولى 1447</p>
 <button class="notif">🔔 فعل تنبيه الأذان</button>
 </div>
 
-<div class="card-time">
+<div class="card-time" id="prayerCard">
 <div class="row-time"><span>الفجر</span><span>05:36</span></div>
 <div class="row-time"><span>الظهر</span><span>12:39</span></div>
 <div class="row-time"><span>العصر</span><span>15:50</span></div>
@@ -46,43 +54,82 @@ body{background:#0f1418;color:#e8ecef;display:flex;justify-content:center;paddin
 </div>
 
 <div class="card-sebha">
-<h3 id="zekrText" style="color:#4fc3f7;font-size:19px">سبحان الله</h3>
+<h3 id="zekrText" style="color:#4fc3f7;font-size:22px">سبحان الله</h3>
 <div class="circle" id="countBtn">0</div>
-<div class="small"><button id="resetBtn">إعادة</button><button id="newWirdBtn">ورد جديد</button></div>
+<div class="small"><button id="newWirdBtn">ورد جديد</button><button id="resetBtn">إعادة</button></div>
+</div>
+
+<div class="card-box">
+<div class="title">الرقية الشرعية 🛡️</div>
+<div class="tabs"><button class="tab active" id="tab-masmou3a">مسموعة</button><button class="tab" id="tab-maktouba">مكتوبة</button></div>
+<div id="roqyaContent"></div>
+</div>
+
+<div class="card-box">
+<div class="title">القرآن - إسلام صبحي 🎧</div>
+<input class="search" id="searchSurah" placeholder="ابحث عن سورة...">
+<div id="qList"></div>
+<div style="color:#4fc3f7;font-size:12px;margin:10px 0" id="nowPlaying">اختر سورة</div>
+<audio id="qAudio" controls style="width:100%"></audio>
 </div>
 
 <div class="ayah">﴿ إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَوْقُوتًا ﴾</div>
 
-<div class="footer">
-created by dina alssawy <br>
-All Rights Reserved © 2026
-</div>
+<div class="footer">created by dina alssawy<br>All Rights Reserved © 2026</div>
+
 </div>
 
 <script>
-// التاريخ انجليزي 25
-var weekdays = ["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
-var months = ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
-var now = new Date();
-var gText = weekdays[now.getDay()] + "، " + now.getDate() + " " + months[now.getMonth()] + " " + now.getFullYear();
-document.getElementById('gDate').textContent = gText;
+// تاريخ 25 انجليزي والهجري عربي
+var weekdays=["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
+var months=["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
+var n=new Date();
+document.getElementById('gDate').textContent=weekdays[n.getDay()]+"، "+n.getDate()+" "+months[n.getMonth()]+" "+n.getFullYear();
 
-// سبحة + ورد جديد يغير كلمة سبحان الله نفسها
+// سبحة + ورد جديد بيغير كلمة سبحان الله نفسها
 var azkar=["سبحان الله","الحمد لله","لا إله إلا الله","الله أكبر","أستغفر الله"];
-var awrad=["سبحان الله وبحمده 100 مرة","أستغفر الله العظيم 100 مرة","الصلاة على النبي 100 مرة","لا حول ولا قوة إلا بالله 100 مرة","سبحان الله وبحمده سبحان الله العظيم","لا إله إلا أنت سبحانك إني كنت من الظالمين"];
-var idx=0; var cnt=0;
+var awrad=["سبحان الله وبحمده 100 مرة","أستغفر الله العظيم 100 مرة","الصلاة على النبي 100 مرة","لا حول ولا قوة إلا بالله 100 مرة","سبحان الله وبحمده سبحان الله العظيم 100 مرة","لا إله إلا أنت سبحانك إني كنت من الظالمين"];
+var idx=0;var cnt=0;
 var tEl=document.getElementById('zekrText');
 var cEl=document.getElementById('countBtn');
-function upd(){ cEl.textContent=cnt; }
+function upd(){cEl.textContent=cnt;}
 upd();
-cEl.onclick=function(){ cnt++; if(cnt>33){cnt=0; idx=(idx+1)%azkar.length; tEl.textContent=azkar[idx];} upd(); };
-document.getElementById('resetBtn').onclick=function(){ cnt=0; upd(); };
+cEl.onclick=function(){cnt++; if(cnt>33){cnt=0; idx=(idx+1)%azkar.length; tEl.textContent=azkar[idx];} upd(); if(navigator.vibrate) navigator.vibrate(30);};
+document.getElementById('resetBtn').onclick=function(){cnt=0; upd();};
 document.getElementById('newWirdBtn').onclick=function(){
-var r = awrad[Math.floor(Math.random()*awrad.length)];
-tEl.textContent = r;
+var r=awrad[Math.floor(Math.random()*awrad.length)];
+tEl.textContent=r;
 cnt=0;
 upd();
 };
+
+// رقية
+var roqyaAudioHTML='<div style="color:#4fc3f7;font-size:13px;text-align:right;margin-bottom:10px">الرقية الشرعية - بصوت إسلام صبحي 🛡️</div><audio controls style="width:100%"><source src="https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/002.mp3" type="audio/mpeg"></audio><div style="color:#8a9aa8;font-size:12px;text-align:center;margin-top:10px">سورة البقرة كاملة - رقية وحفظ بإذن الله</div>';
+var roqyaTextHTML='<div style="line-height:1.9;font-size:14px;color:#d7e1eb">بسم الله أرقيك من كل شيء يؤذيك<br>من شر كل نفس أو عين حاسد الله يشفيك<br><br>أعوذ بكلمات الله التامات من شر ما خلق<br>بسم الله الذي لا يضر مع اسمه شيء في الأرض ولا في السماء</div>';
+document.getElementById('roqyaContent').innerHTML=roqyaAudioHTML;
+document.getElementById('tab-masmou3a').onclick=function(){this.classList.add('active');document.getElementById('tab-maktouba').classList.remove('active');document.getElementById('roqyaContent').innerHTML=roqyaAudioHTML;};
+document.getElementById('tab-maktouba').onclick=function(){this.classList.add('active');document.getElementById('tab-masmou3a').classList.remove('active');document.getElementById('roqyaContent').innerHTML=roqyaTextHTML;};
+
+// قرآن 114 سورة
+var suras=["الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه","الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم","لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر","فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج","نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس","التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد","الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات","القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر","المسد","الإخلاص","الفلق","الناس"];
+var qListEl=document.getElementById('qList');var qAudio=document.getElementById('qAudio');
+function build(f){f=f||'';qListEl.innerHTML='';for(var i=0;i<suras.length;i++){var name=suras[i];var num=i+1;if(f&&name.indexOf(f)===-1)continue;var div=document.createElement('div');div.className='q-item';div.innerHTML='<span>'+num+'. '+name+'</span><span>'+String(num).padStart(3,'0')+'</span>';(function(n,div,name){div.onclick=function(){var all=document.querySelectorAll('.q-item');for(var k=0;k<all.length;k++)all[k].classList.remove('active');div.classList.add('active');qAudio.src='https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/'+String(n).padStart(3,'0')+'.mp3';qAudio.play();document.getElementById('nowPlaying').textContent='الآن: '+name;};})(num,div,name);qListEl.appendChild(div);}}
+build();
+document.getElementById('searchSurah').addEventListener('input',function(e){build(e.target.value);});
+
+// مواقيت
+async function loadPrayer(){
+try{
+var ip=await fetch('https://ipapi.co/json/').then(r=>r.json());
+var city=ip.city||'Giza';
+document.getElementById('loc').textContent='📍 '+city;
+var data=await fetch('https://api.aladhan.com/v1/timingsByCity?city='+city+'&country='+(ip.country_name||'Egypt')+'&method=5').then(r=>r.json());
+var t=data.data.timings;
+document.getElementById('prayerCard').innerHTML='<div class="row-time"><span>الفجر</span><span>'+t.Fajr.substring(0,5)+'</span></div><div class="row-time"><span>الظهر</span><span>'+t.Dhuhr.substring(0,5)+'</span></div><div class="row-time"><span>العصر</span><span>'+t.Asr.substring(0,5)+'</span></div><div class="row-time"><span>المغرب</span><span>'+t.Maghrib.substring(0,5)+'</span></div><div class="row-time"><span>العشاء</span><span>'+t.Isha.substring(0,5)+'</span></div>';
+document.getElementById('hDate').textContent=data.data.date.hijri.day+' '+data.data.date.hijri.month.ar+' '+data.data.date.hijri.year;
+}catch(e){}
+}
+loadPrayer();
 </script>
 </body>
-  </html>
+</html>
