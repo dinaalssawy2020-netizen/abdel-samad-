@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>  عقيل  </title>
+<title>عبد الصمد</title>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#12161a;--card:#1c2127;--card2:#222930;--line:#2a333d;--muted:#9aa5b1;--cyan:#4fc3f7;--cyan-dim:rgba(79,195,247,.14)}
@@ -37,12 +37,11 @@ body{background:var(--bg);color:#f5f6f7;display:flex;justify-content:center;padd
 <div class="top">
 <h1>عبد الصمد</h1>
 <p>ما يحتاجه المسلم للتقرب إلى الله</p>
-<div <b>:</b> اللهم لك الحمد و الشكر عدد خلقك ورضا نفسك وزنه عرشك ومداد كلماتك اللهم اتمم عافيته اللهم يسر اللهم يسر اللهم يسر</div>
+<div class="doaa">🤲 <b>دعائي:</b> اللهم لك الحمد و الشكر، اللهم اتمم عافيتي، اللهم يسر اللهم يسر اللهم يسر</div>
 <div class="badge" id="loc">📍 جاري تحديد المدينة...</div>
 <div class="date" id="hdate">--</div>
 <button class="notifBtn" id="notifBtn">🔔 فعلي تنبيه الأذان</button>
 </div>
-
 <div class="card"><div class="row" id="r-Fajr"><span class="name">الفجر</span><span id="t-Fajr">--:--</span></div><div class="row" id="r-Dhuhr"><span class="name">الظهر</span><span id="t-Dhuhr">--:--</span></div><div class="row" id="r-Asr"><span class="name">العصر</span><span id="t-Asr">--:--</span></div><div class="row" id="r-Maghrib"><span class="name">المغرب</span><span id="t-Maghrib">--:--</span></div><div class="row" id="r-Isha"><span class="name">العشاء</span><span id="t-Isha">--:--</span></div></div>
 
 <div class="dhikr"><h3 id="zekrText">سبحان الله وبحمده</h3><div class="circle" id="countBtn">0</div><div class="small"><button id="resetBtn">تصفير</button><button id="changeBtn">ذكر آخر</button></div></div>
@@ -73,7 +72,7 @@ loadTimes();
 const awrad=["﴿ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ ﴾ - ردديها 100 مرة اليوم","﴿ وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا ﴾ - اقرئي سورة الواقعة اليوم","﴿ فَإِنَّ مَعَ الْعُسْرِ يُسْرًا ﴾ - استغفري 100 مرة","﴿ وَقُل رَّبِّ زِدْنِي عِلْمًا ﴾ - اقرئي صفحة من البقرة","﴿ إِنَّ اللَّهَ مَعَ الصَّابِرِينَ ﴾ - سبحي 33 وحمدي 33 وكبري 34","﴿ لَا تَحْزَنْ إِنَّ اللَّهَ مَعَنَا ﴾ - صلي على النبي 100 مرة اليوم"];
 function newWird(){document.getElementById('wirdBox').textContent=awrad[new Date().getDate()%awrad.length];}
 newWird();document.getElementById('newWird').onclick=newWird;
-const sabah=[{t:'أصبحنا وأصبح الملك لله',d:'مرة'},{t:'اللهم بك أصبحنا وبك أمسينا',d:'مرة'},{t:'آية الكرسي',d:'مرة'},{t:'سبحان الله وبحمده',d:'100 مرة'}];
+  const sabah=[{t:'أصبحنا وأصبح الملك لله',d:'مرة'},{t:'اللهم بك أصبحنا وبك أمسينا',d:'مرة'},{t:'آية الكرسي',d:'مرة'},{t:'سبحان الله وبحمده',d:'100 مرة'}];
 const masa=[{t:'أمسينا وأمسى الملك لله',d:'مرة'},{t:'اللهم بك أمسينا',d:'مرة'},{t:'أعوذ بكلمات الله التامات',d:'3 مرات'}];
 function renderAzkar(list){let box=document.getElementById('azkarBox');box.innerHTML='';list.forEach(z=>{box.innerHTML+=`<div class="zekr-item"><b>${z.d}</b>${z.t}</div>`});}
 renderAzkar(sabah);
@@ -82,15 +81,35 @@ document.getElementById('tab-masa').onclick=function(){this.classList.add('activ
 const roqyaHTML=document.getElementById('roqyaBox').innerHTML;
 document.getElementById('tab-r-text').onclick=function(){this.classList.add('active');document.getElementById('tab-r-audio').classList.remove('active');document.getElementById('roqyaBox').innerHTML=roqyaHTML;};
 
-// تم التعديل هنا - رقية شرعية بصوت إسلام صبحي
 document.getElementById('tab-r-audio').onclick=function(){
   this.classList.add('active');
   document.getElementById('tab-r-text').classList.remove('active');
-  document.getElementById('roqyaBox').innerHTML=`
-    <div style="font-size:12px;color:#4fc3f7;margin-bottom:8px">🛡️ الرقية الشرعية - بصوت إسلام صبحي</div>
-    <audio id="roqyaAudio" controls autoplay style="width:100%;border-radius:10px;background:#222930">
-      <source src="https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/002.mp3" type="audio/mpeg">
-      <source src="https://download.quranicaudio.com/quran/islam_sobhi/002.mp3" type="audio/mpeg">
-      المتصفح لا يدعم تشغيل الصوت
-    </audio>
-    <div style="font-size:11px;color:#9aa5b1;margin-top:8px;line
+  var box=document.getElementById('roqyaBox');
+  box.innerHTML='<div style="font-size:12px;color:#4fc3f7;margin-bottom:8px">🛡️ الرقية الشرعية - بصوت إسلام صبحي</div><audio id="roqyaAudio" controls autoplay style="width:100%;border-radius:10px"><source src="https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/002.mp3" type="audio/mpeg"></audio><div style="font-size:11px;color:#9aa5b1;margin-top:8px">سورة البقرة كاملة - رقية وحفظ بإذن الله - بصوت إسلام صبحي</div>';
+  setTimeout(function(){var a=document.getElementById('roqyaAudio');if(a){a.play().catch(function(){});}},300);
+};
+
+const suras=["الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه","الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم","لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر","فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج","نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس","التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد","الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات","القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر","المسد","الإخلاص","الفلق","الناس"];
+let qListEl=document.getElementById('qList');let qAudio=document.getElementById('qAudio');let nowPlaying=document.getElementById('nowPlaying');
+function buildList(f=""){qListEl.innerHTML="";suras.forEach((n,i)=>{let num=i+1;if(f&&!n.includes(f))return;let d=document.createElement('div');d.className='q-surah';d.innerHTML='<span>'+num+'. '+n+'</span><span style="font-size:11px;color:#9aa5b1">'+String(num).padStart(3,'0')+'</span>';d.onclick=function(){document.querySelectorAll('.q-surah').forEach(function(e){e.classList.remove('active');});d.classList.add('active');qAudio.src='https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/'+String(num).padStart(3,'0')+'.mp3';qAudio.play();nowPlaying.textContent='الآن: '+n+' - إسلام صبحي';};qListEl.appendChild(d);});}
+buildList();document.getElementById('searchSurah').addEventListener('input',function(e){buildList(e.target.value);});
+
+let notifEnabled=localStorage.getItem('adhan_notif')==='1';
+function updateNotifBtn(){document.getElementById('notifBtn').textContent=notifEnabled?'✅ تنبيه الأذان مفعل':'🔔 فعلي تنبيه الأذان';}
+updateNotifBtn();
+document.getElementById('notifBtn').onclick=async function(){
+if(!('Notification' in window)){alert('المتصفح لا يدعم التنبيه');return;}
+let perm=await Notification.requestPermission();
+if(perm==='granted'){notifEnabled=true;localStorage.setItem('adhan_notif','1');updateNotifBtn();alert('تم تفعيل تنبيه الأذان');}else{alert('لازم توافقي على الإشعارات');}
+};
+setInterval(function(){
+if(!notifEnabled||!prayerT.Fajr)return;
+let now=new Date();let cur=now.getHours()+':'+String(now.getMinutes()).padStart(2,'0');
+for(let k in prayerT){if(prayerT[k]===cur && now.getSeconds()<3){
+let name={Fajr:'الفجر',Dhuhr:'الظهر',Asr:'العصر',Maghrib:'المغرب',Isha:'العشاء'}[k];
+new Notification('حان الآن موعد أذان '+name,{body:'﴿ إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَوْقُوتًا ﴾'});
+}}
+},1000);
+</script>
+</body>
+</html>
