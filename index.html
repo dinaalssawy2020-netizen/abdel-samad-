@@ -6,127 +6,82 @@
 <title>عبد الصمد - مواقيت الصلاة</title>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#12161a;
-  --card:#1c2127;
-  --card2:#222930;
-  --line:#2a333d;
-  --muted:#9aa5b1;
-  --cyan:#4fc3f7;
-  --cyan-dim:rgba(79,195,247,.14);
-}
+:root{--bg:#12161a;--card:#1c2127;--card2:#222930;--line:#2a333d;--muted:#9aa5b1;--cyan:#4fc3f7;--cyan-dim:rgba(79,195,247,.14)}
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Tajawal',system-ui,sans-serif}
 body{background:var(--bg);color:#f5f6f7;min-height:100vh;display:flex;justify-content:center;padding:22px 16px}
 .wrap{width:100%;max-width:400px}
 .top{text-align:center;margin:8px 0 18px}
-.top h1{font-size:22px;font-weight:700;letter-spacing:.2px}
+.top h1{font-size:22px;font-weight:700}
 .top p{color:var(--muted);font-size:13px;margin-top:6px}
-.badge{display:inline-flex;align-items:center;gap:6px;background:#252d36;border:1px solid #2e3844;color:var(--cyan);padding:6px 14px;border-radius:999px;font-size:13px;margin-top:12px}
+.badge{display:inline-flex;gap:6px;background:#252d36;border:1px solid #2e3844;color:var(--cyan);padding:6px 14px;border-radius:999px;font-size:13px;margin-top:12px}
 .date{color:var(--muted);font-size:13px;margin-top:10px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px;margin-bottom:18px}
 .row{display:flex;justify-content:space-between;align-items:center;background:var(--card2);border:1px solid transparent;border-radius:14px;padding:14px 16px;margin-bottom:10px}
-.row:last-child{margin-bottom:0}
-.row.on{background:var(--cyan-dim);border-color:var(--cyan)}
-.row.on .name{color:var(--cyan)}
-.name{font-weight:700;font-size:15px}
-.time{font-weight:500;font-size:15px;opacity:.9}
+.row.on{background:var(--cyan-dim);border-color:var(--cyan)} .row.on .name{color:var(--cyan)}
+.name{font-weight:700;font-size:15px} .time{font-size:15px}
 .hint{font-size:11px;color:var(--muted);margin-top:10px;text-align:left}
-.dhikr{margin-top:18px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;text-align:center}
-.dhikr h3{font-size:14px;color:var(--muted);font-weight:500}
-.circle{width:96px;height:96px;margin:14px auto;border-radius:50%;border:2.5px solid var(--cyan);display:grid;place-items:center;font-size:28px;font-weight:700;color:var(--cyan);box-shadow:0 0 18px var(--cyan-dim);cursor:pointer;user-select:none;transition:.12s}
+.dhikr{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;text-align:center;margin-bottom:18px}
+.dhikr h3{font-size:14px;color:var(--muted)}
+.circle{width:96px;height:96px;margin:14px auto;border-radius:50%;border:2.5px solid var(--cyan);display:grid;place-items:center;font-size:28px;font-weight:700;color:var(--cyan);box-shadow:0 0 18px var(--cyan-dim);cursor:pointer}
 .circle:active{transform:scale(.96);background:var(--cyan-dim)}
-.small{margin-top:6px;display:flex;justify-content:center;gap:18px}
-.small button{background:none;border:none;color:var(--muted);font-size:12px;text-decoration:underline;cursor:pointer}
-.ayah{margin-top:18px;text-align:center;color:#8ea0b0;font-size:12px;line-height:1.6}
+.small{display:flex;justify-content:center;gap:18px;margin-top:6px} .small button{background:none;border:none;color:var(--muted);font-size:12px;text-decoration:underline;cursor:pointer}
+.section-title{font-size:16px;font-weight:700;margin-bottom:12px;display:flex;gap:8px} .section-title span{color:var(--cyan)}
+.tabs{display:flex;gap:8px;margin-bottom:12px} .tab{flex:1;padding:8px;border-radius:10px;border:1px solid var(--line);background:var(--card2);color:var(--muted);font-size:12px;cursor:pointer} .tab.active{background:var(--cyan-dim);border-color:var(--cyan);color:var(--cyan)}
+.zekr-item{background:var(--card2);border-radius:12px;padding:12px;margin-bottom:8px;line-height:1.7;font-size:13px} .zekr-item b{display:block;color:var(--cyan);font-size:11px;margin-bottom:4px}
+audio{width:100%;margin-top:8px;height:32px} .q-list{max-height:300px;overflow-y:auto}
+.q-surah{display:flex;justify-content:space-between;background:var(--card2);border-radius:10px;padding:10px 12px;margin-bottom:6px;cursor:pointer;border:1px solid transparent} .q-surah.active{border-color:var(--cyan);background:var(--cyan-dim)} .q-surah .num{font-size:11px;color:var(--muted)}
+.player{position:sticky;bottom:0;background:var(--card);padding-top:10px;margin-top:10px;border-top:1px solid var(--line)}
+.ayah{margin:12px 0 24px;text-align:center;color:#8ea0b0;font-size:12px} .roqya-text{font-size:13.5px;line-height:1.9;text-align:justify;white-space:pre-line}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="top">
-    <h1>مواقيت الصلاة</h1>
-    <p>ما يحتاجه المسلم للتقرب إلى الله</p>
-    <div class="badge" id="loc">📍 جاري تحديد المدينة...</div>
-    <div class="date" id="hdate">--</div>
-  </div>
+<div class="top"><h1>مواقيت الصلاة</h1><p>ما يحتاجه المسلم للتقرب إلى الله</p><div class="badge" id="loc">📍 جاري تحديد المدينة...</div><div class="date" id="hdate">--</div></div>
 
-  <div class="card" id="list">
-    <div class="row" id="r-Fajr"><span class="name">الفجر</span><span class="time" id="t-Fajr">--:--</span></div>
-    <div class="row" id="r-Dhuhr"><span class="name">الظهر</span><span class="time" id="t-Dhuhr">--:--</span></div>
-    <div class="row" id="r-Asr"><span class="name">العصر</span><span class="time" id="t-Asr">--:--</span></div>
-    <div class="row" id="r-Maghrib"><span class="name">المغرب</span><span class="time" id="t-Maghrib">--:--</span></div>
-    <div class="row" id="r-Isha"><span class="name">العشاء</span><span class="time" id="t-Isha">--:--</span></div>
-    <div class="hint">الصلاة القادمة متعلمة باللون الأزرق</div>
-  </div>
+<div class="card"><div class="row" id="r-Fajr"><span class="name">الفجر</span><span class="time" id="t-Fajr">--:--</span></div><div class="row" id="r-Dhuhr"><span class="name">الظهر</span><span class="time" id="t-Dhuhr">--:--</span></div><div class="row" id="r-Asr"><span class="name">العصر</span><span class="time" id="t-Asr">--:--</span></div><div class="row" id="r-Maghrib"><span class="name">المغرب</span><span class="time" id="t-Maghrib">--:--</span></div><div class="row" id="r-Isha"><span class="name">العشاء</span><span class="time" id="t-Isha">--:--</span></div><div class="hint">الصلاة القادمة متعلمة باللون الأزرق</div></div>
 
-  <div class="dhikr">
-    <h3 id="zekrText">سبحان الله وبحمده</h3>
-    <div class="circle" id="countBtn">0</div>
-    <div class="small">
-      <button id="resetBtn">تصفير</button>
-      <button id="changeBtn">ذكر آخر</button>
-    </div>
-  </div>
+<div class="dhikr"><h3 id="zekrText">سبحان الله وبحمده</h3><div class="circle" id="countBtn">0</div><div class="small"><button id="resetBtn">تصفير</button><button id="changeBtn">ذكر آخر</button></div></div>
 
-  <div class="ayah">﴿ إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَوْقُوتًا ﴾</div>
+<div class="card"><div class="section-title">📿 <span>الأذكار</span></div><div class="tabs"><button class="tab active" id="tab-sabah">الصباح</button><button class="tab" id="tab-masa">المساء</button></div><div id="azkarBox"></div></div>
+
+<div class="card"><div class="section-title">🛡️ <span>الرقية الشرعية</span></div><div class="tabs"><button class="tab active" id="tab-r-text">مكتوبة</button><button class="tab" id="tab-r-audio">مسموعة</button></div><div id="roqyaBox"><div class="roqya-text">بسم الله الرحمن الرحيم
+الفاتحة 7 مرات
+آية الكرسي
+البقرة 102 و 285-286
+القلم 51-52
+الإخلاص 3 - الفلق 3 - الناس 3
+
+بسم الله أرقيك من كل شيء يؤذيك من شر كل نفس أو عين حاسد الله يشفيك
+اللهم رب الناس اذهب الباس اشف أنت الشافي لا شفاء إلا شفاؤك شفاء لا يغادر سقما
+أعوذ بكلمات الله التامات من شر ما خلق
+أعوذ بكلمات الله التامة من كل شيطان وهامة ومن كل عين لامة
+</div></div></div>
+
+<div class="card"><div class="section-title">🎧 <span>القرآن - إسلام صبحي</span></div><input id="searchSurah" placeholder="ابحث عن سورة..." style="width:100%;padding:8px 12px;border-radius:10px;border:1px solid #2a333d;background:#222930;color:#fff;font-size:12px;margin-bottom:10px;outline:none"><div class="q-list" id="qList"></div><div class="player"><div id="nowPlaying" style="font-size:12px;color:#4fc3f7;margin-bottom:6px">اختر سورة للاستماع</div><audio id="qAudio" controls></audio></div></div>
+
+<div class="ayah">﴿ إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَوْقُوتًا ﴾</div>
 </div>
 
 <script>
-// تاريخ اليوم
-document.getElementById('hdate').textContent = new Date().toLocaleDateString('ar-EG',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-
-// عداد تسبيح
-let azkar = ["سبحان الله وبحمده","سبحان الله","الحمد لله","الله أكبر","لا إله إلا الله","أستغفر الله"];
-let zIndex = 0;
-let c = parseInt(localStorage.getItem('abd_samad_count')||'0');
-const btn = document.getElementById('countBtn');
-const txt = document.getElementById('zekrText');
-btn.textContent = c;
-btn.onclick = ()=>{ c++; btn.textContent=c; localStorage.setItem('abd_samad_count',c); if(c%33==0){ btn.style.transform='scale(1.08)'; setTimeout(()=>btn.style.transform='',180)} };
-document.getElementById('resetBtn').onclick = ()=>{ c=0; btn.textContent=0; localStorage.setItem('abd_samad_count','0'); };
-document.getElementById('changeBtn').onclick = ()=>{ zIndex=(zIndex+1)%azkar.length; txt.textContent=azkar[zIndex]; };
-
-// مواقيت - شغالة 100%
-async function loadTimes(){
-  let city='Cairo', country='Egypt';
-  try{
-    let r = await fetch('https://ipapi.co/json/');
-    let j = await r.json();
-    city = j.city || 'Cairo';
-    country = j.country_name || 'Egypt';
-    document.getElementById('loc').textContent = '📍 '+city;
-  }catch(e){
-    document.getElementById('loc').textContent = '📍 القاهرة';
-  }
-  try{
-    let res = await fetch('https://api.aladhan.com/v1/timingsByCity?city='+encodeURIComponent(city)+'&country='+encodeURIComponent(country)+'&method=5');
-    let data = await res.json();
-    let t = data.data.timings;
-    setTimes(t);
-  }catch(e){
-    // لو فشل يجيب القاهرة
-    let res2 = await fetch('https://api.aladhan.com/v1/timingsByCity?city=Cairo&country=Egypt&method=5');
-    let d2 = await res2.json();
-    setTimes(d2.data.timings);
-  }
-}
-function to12(t){
-  let [h,m]=t.split(':'); h=+h; let ap = h>=12 ? 'م' : 'ص'; h = h%12 || 12; return h+':'+m+' '+ap;
-}
-function setTimes(t){
-  document.getElementById('t-Fajr').textContent=to12(t.Fajr);
-  document.getElementById('t-Dhuhr').textContent=to12(t.Dhuhr);
-  document.getElementById('t-Asr').textContent=to12(t.Asr);
-  document.getElementById('t-Maghrib').textContent=to12(t.Maghrib);
-  document.getElementById('t-Isha').textContent=to12(t.Isha);
-  let now = new Date(); let cur = now.getHours()*60+now.getMinutes();
-  let order = ['Fajr','Dhuhr','Asr','Maghrib','Isha'];
-  let next='Fajr';
-  for(let p of order){ let [hh,mm]=t[p].split(':'); if(+hh*60+ +mm > cur){ next=p; break; } }
-  document.querySelectorAll('.row').forEach(el=>el.classList.remove('on'));
-  let active = document.getElementById('r-'+next);
-  if(active) active.classList.add('on');
-}
+document.getElementById('hdate').textContent=new Date().toLocaleDateString('ar-EG',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+let azkar=['سبحان الله وبحمده','سبحان الله','الحمد لله','الله أكبر','لا إله إلا الله','أستغفر الله'];let zIndex=0;let c=parseInt(localStorage.getItem('abd_samad_count')||'0');const btn=document.getElementById('countBtn');const txt=document.getElementById('zekrText');btn.textContent=c;btn.onclick=()=>{c++;btn.textContent=c;localStorage.setItem('abd_samad_count',c)};document.getElementById('resetBtn').onclick=()=>{c=0;btn.textContent=0;localStorage.setItem('abd_samad_count','0')};document.getElementById('changeBtn').onclick=()=>{zIndex=(zIndex+1)%azkar.length;txt.textContent=azkar[zIndex]};
+async function loadTimes(){let city='Cairo',country='Egypt';try{let r=await fetch('https://ipapi.co/json/');let j=await r.json();city=j.city||'Cairo';country=j.country_name||'Egypt';document.getElementById('loc').textContent='📍 '+city;}catch(e){document.getElementById('loc').textContent='📍 القاهرة';}try{let res=await fetch('https://api.aladhan.com/v1/timingsByCity?city='+encodeURIComponent(city)+'&country='+encodeURIComponent(country)+'&method=5');let data=await res.json();setTimes(data.data.timings);}catch(e){let res2=await fetch('https://api.aladhan.com/v1/timingsByCity?city=Cairo&country=Egypt&method=5');let d2=await res2.json();setTimes(d2.data.timings);}}
+function to12(t){let[h,m]=t.split(':');h=+h;let ap=h>=12?'م':'ص';h=h%12||12;return h+':'+m+' '+ap;}
+function setTimes(t){document.getElementById('t-Fajr').textContent=to12(t.Fajr);document.getElementById('t-Dhuhr').textContent=to12(t.Dhuhr);document.getElementById('t-Asr').textContent=to12(t.Asr);document.getElementById('t-Maghrib').textContent=to12(t.Maghrib);document.getElementById('t-Isha').textContent=to12(t.Isha);let now=new Date();let cur=now.getHours()*60+now.getMinutes();let order=['Fajr','Dhuhr','Asr','Maghrib','Isha'];let next='Fajr';for(let p of order){let[hh,mm]=t[p].split(':');if(+hh*60+ +mm>cur){next=p;break;}}document.querySelectorAll('.row').forEach(el=>el.classList.remove('on'));document.getElementById('r-'+next)?.classList.add('on');}
 loadTimes();
+const sabah=[{t:'أصبحنا وأصبح الملك لله',d:'مرة'},{t:'اللهم بك أصبحنا وبك أمسينا',d:'مرة'},{t:'آية الكرسي - الله لا إله إلا هو الحي القيوم',d:'مرة'},{t:'سبحان الله وبحمده',d:'100 مرة'},{t:'لا إله إلا الله وحده لا شريك له',d:'10 مرات'}];
+const masa=[{t:'أمسينا وأمسى الملك لله',d:'مرة'},{t:'اللهم بك أمسينا وبك أصبحنا',d:'مرة'},{t:'أعوذ بكلمات الله التامات من شر ما خلق',d:'3 مرات'},{t:'بسم الله الذي لا يضر مع اسمه شيء',d:'3 مرات'},{t:'المعوذات 3 مرات',d:'الإخلاص والفلق والناس'}];
+function renderAzkar(list){let box=document.getElementById('azkarBox');box.innerHTML='';list.forEach(z=>{box.innerHTML+=`<div class="zekr-item"><b>${z.d}</b>${z.t}</div>`});}
+renderAzkar(sabah);
+document.getElementById('tab-sabah').onclick=function(){this.classList.add('active');document.getElementById('tab-masa').classList.remove('active');renderAzkar(sabah);};
+document.getElementById('tab-masa').onclick=function(){this.classList.add('active');document.getElementById('tab-sabah').classList.remove('active');renderAzkar(masa);};
+const roqyaTextHTML=document.getElementById('roqyaBox').innerHTML;
+document.getElementById('tab-r-text').onclick=function(){this.classList.add('active');document.getElementById('tab-r-audio').classList.remove('active');document.getElementById('roqyaBox').innerHTML=roqyaTextHTML;};
+document.getElementById('tab-r-audio').onclick=function(){this.classList.add('active');document.getElementById('tab-r-text').classList.remove('active');document.getElementById('roqyaBox').innerHTML=`<div style="font-size:12px;color:#9aa5b1;margin-bottom:8px">الرقية الشرعية - سورة البقرة كاملة رقية</div><audio controls style="width:100%"><source src="https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/002.mp3" type="audio/mpeg"></audio><div style="margin-top:12px"><audio controls style="width:100%"><source src="https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/036.mp3" type="audio/mpeg"></audio><div style="font-size:11px;color:#9aa5b1;margin-top:4px">سورة يس - رقية وشفاء</div></div>`;};
+const suras=["الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه","الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم","لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر","فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج","نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس","التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد","الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات","القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر","المسد","الإخلاص","الفلق","الناس"];
+let qListEl=document.getElementById('qList');let qAudio=document.getElementById('qAudio');let nowPlaying=document.getElementById('nowPlaying');
+function buildList(filter=""){qListEl.innerHTML="";suras.forEach((name,i)=>{let num=i+1;if(filter&&!name.includes(filter))return;let div=document.createElement('div');div.className='q-surah';div.innerHTML=`<span>${num}. ${name}</span><span class="num">${String(num).padStart(3,'0')}</span>`;div.onclick=()=>{document.querySelectorAll('.q-surah').forEach(e=>e.classList.remove('active'));div.classList.add('active');let padded=String(num).padStart(3,'0');let url=`https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/${padded}.mp3`;qAudio.src=url;qAudio.play();nowPlaying.textContent=`الآن: سورة ${name} - إسلام صبحي`;};qListEl.appendChild(div);});}
+buildList();document.getElementById('searchSurah').addEventListener('input',e=>buildList(e.target.value));
 </script>
 </body>
-        </html>
+</html>
