@@ -81,28 +81,16 @@ document.getElementById('tab-sabah').onclick=function(){this.classList.add('acti
 document.getElementById('tab-masa').onclick=function(){this.classList.add('active');document.getElementById('tab-sabah').classList.remove('active');renderAzkar(masa);};
 const roqyaHTML=document.getElementById('roqyaBox').innerHTML;
 document.getElementById('tab-r-text').onclick=function(){this.classList.add('active');document.getElementById('tab-r-audio').classList.remove('active');document.getElementById('roqyaBox').innerHTML=roqyaHTML;};
-document.getElementById('tab-r-audio').onclick=function(){this.classList.add('active');document.getElementById('tab-r-text').classList.remove('active');document.getElementById('roqyaBox').innerHTML=`<audio controls style="width:100%"><source src="https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/002.mp3"></audio>`;};
-const suras=["الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه","الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم","لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر","فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج","نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس","التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد","الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات","القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر","المسد","الإخلاص","الفلق","الناس"];
-let qListEl=document.getElementById('qList');let qAudio=document.getElementById('qAudio');let nowPlaying=document.getElementById('nowPlaying');
-function buildList(f=""){qListEl.innerHTML="";suras.forEach((n,i)=>{let num=i+1;if(f&&!n.includes(f))return;let d=document.createElement('div');d.className='q-surah';d.innerHTML=`<span>${num}. ${n}</span><span style="font-size:11px;color:#9aa5b1">${String(num).padStart(3,'0')}</span>`;d.onclick=()=>{document.querySelectorAll('.q-surah').forEach(e=>e.classList.remove('active'));d.classList.add('active');qAudio.src=`https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/${String(num).padStart(3,'0')}.mp3`;qAudio.play();nowPlaying.textContent=`الآن: ${n} - إسلام صبحي`;};qListEl.appendChild(d);});}
-buildList();document.getElementById('searchSurah').addEventListener('input',e=>buildList(e.target.value));
 
-let notifEnabled=localStorage.getItem('adhan_notif')==='1';
-function updateNotifBtn(){document.getElementById('notifBtn').textContent=notifEnabled?'✅ تنبيه الأذان مفعل':'🔔 فعلي تنبيه الأذان';}
-updateNotifBtn();
-document.getElementById('notifBtn').onclick=async()=>{
-if(!('Notification' in window)){alert('المتصفح لا يدعم التنبيه');return;}
-let perm=await Notification.requestPermission();
-if(perm==='granted'){notifEnabled=true;localStorage.setItem('adhan_notif','1');updateNotifBtn();alert('تم تفعيل تنبيه الأذان');}else{alert('لازم توافقي على الإشعارات');}
-};
-setInterval(()=>{
-if(!notifEnabled||!prayerT.Fajr)return;
-let now=new Date();let cur=now.getHours()+':'+String(now.getMinutes()).padStart(2,'0');
-for(let k in prayerT){if(prayerT[k]===cur && now.getSeconds()<3){
-let name={Fajr:'الفجر',Dhuhr:'الظهر',Asr:'العصر',Maghrib:'المغرب',Isha:'العشاء'}[k];
-new Notification('حان الآن موعد أذان '+name,{body:'﴿ إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَوْقُوتًا ﴾'});
-}}
-},1000);
-</script>
-</body>
-  </html>
+// تم التعديل هنا - رقية شرعية بصوت إسلام صبحي
+document.getElementById('tab-r-audio').onclick=function(){
+  this.classList.add('active');
+  document.getElementById('tab-r-text').classList.remove('active');
+  document.getElementById('roqyaBox').innerHTML=`
+    <div style="font-size:12px;color:#4fc3f7;margin-bottom:8px">🛡️ الرقية الشرعية - بصوت إسلام صبحي</div>
+    <audio id="roqyaAudio" controls autoplay style="width:100%;border-radius:10px;background:#222930">
+      <source src="https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/002.mp3" type="audio/mpeg">
+      <source src="https://download.quranicaudio.com/quran/islam_sobhi/002.mp3" type="audio/mpeg">
+      المتصفح لا يدعم تشغيل الصوت
+    </audio>
+    <div style="font-size:11px;color:#9aa5b1;margin-top:8px;line
