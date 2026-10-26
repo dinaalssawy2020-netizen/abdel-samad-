@@ -52,16 +52,19 @@ body{background:#0f1418;color:#e8ecef;display:flex;justify-content:center;paddin
 var weekdays=["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];var months=["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];var now=new Date();document.getElementById('gDate').textContent=weekdays[now.getDay()]+"، "+now.getDate()+" "+months[now.getMonth()]+" "+now.getFullYear();
 var azkar=["سبحان الله","الحمد لله","لا إله إلا الله","الله أكبر","أستغفر الله"];var awrad=["سبحان الله وبحمده 100 مرة","أستغفر الله العظيم 100 مرة","الصلاة على النبي 100 مرة","لا حول ولا قوة إلا بالله 100 مرة"];var idx=0;var cnt=0;var tEl=document.getElementById('zekrText');var cEl=document.getElementById('countBtn');function upd(){cEl.textContent=cnt;}upd();cEl.onclick=function(){cnt++;if(cnt>33){cnt=0;idx=(idx+1)%azkar.length;tEl.textContent=azkar[idx];}upd();};document.getElementById('resetBtn').onclick=function(){cnt=0;upd();};document.getElementById('newWirdBtn').onclick=function(){tEl.textContent=awrad[Math.floor(Math.random()*awrad.length)];cnt=0;upd();};
 function formatTime(s){if(isNaN(s))return"0:00";var m=Math.floor(s/60);var sec=Math.floor(s%60);return m+":"+(sec<10?"0"+sec:sec);}
-
 var prayerTimings=null;
 var notifEnabled=localStorage.getItem('adhanNotif')==='1';
 function updateNotifBtn(){var b=document.getElementById('notifBtn');if(notifEnabled){b.textContent='✅ تم تفعيل تنبيه الأذان';}else{b.textContent='🔔 فعلي تنبيه الأذان';}}
 updateNotifBtn();
-document.getElementById('notifBtn').onclick=async function(){
- if(!("Notification" in window)){alert('المتصفح لا يدعم الإشعارات');return;}
- var perm=await Notification.requestPermission();
- if(perm==='granted'){notifEnabled=true;localStorage.setItem('adhanNotif','1');updateNotifBtn();new Notification('تم تفعيل تنبيه الأذان 🕌',{body:'هنبعتلك إشعار مع كل أذان حسب مدينتك'});}else{alert('لازم توافقي على الإشعارات من إعدادات المتصفح');}
-};
+async function requestNotif(auto=false){
+ if(!("Notification" in window))return;
+ if(Notification.permission==='granted'){notifEnabled=true;localStorage.setItem('adhanNotif','1');updateNotifBtn();if(!auto)new Notification('تم تفعيل تنبيه الأذان 🕌',{body:'هنبعتلك إشعار مع كل أذان حسب مدينتك'});return;}
+ if(Notification.permission!=='denied'){
+   var perm=await Notification.requestPermission();
+   if(perm==='granted'){notifEnabled=true;localStorage.setItem('adhanNotif','1');updateNotifBtn();new Notification('تم تفعيل تنبيه الأذان 🕌',{body:'هيوصلك تنبيه مع كل أذان'});}
+ }
+}
+document.getElementById('notifBtn').onclick=function(){requestNotif(false);};
 function checkAdhan(){
  if(!notifEnabled||!prayerTimings)return;
  var n=new Date();var cur=n.getHours().toString().padStart(2,'0')+':'+n.getMinutes().toString().padStart(2,'0');
@@ -76,7 +79,6 @@ function checkAdhan(){
  }
 }
 setInterval(checkAdhan,30000);
-
 var roqyaList=[{name:"الرقية - الفاتحة وآية الكرسي",src:"https://server6.mp3quran.net/roqya/Rewayat-Hafs-A-n-Assem/001.mp3"},{name:"الرقية - البقرة كاملة",src:"https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/002.mp3"},{name:"الرقية - الإخلاص والفلق والناس",src:"https://server6.mp3quran.net/roqya/Rewayat-Hafs-A-n-Assem/112.mp3"},{name:"رقية الحسد والعين",src:"https://server6.mp3quran.net/roqya/Rewayat-Hafs-A-n-Assem/113.mp3"}];
 var roqyaIndex=0;
 function getRoqyaHTML(){var html='<div style="background:#0f1418;border:1px solid #2a3542;border-radius:14px;padding:12px"><div style="display:flex;justify-content:space-between;margin-bottom:10px"><span id="roqyaName" style="color:#4fc3f7;font-size:12px">▶ '+roqyaList[roqyaIndex].name+'</span><span id="roqyaTime" style="color:#8a9aa8;font-size:12px">0:00 / 0:00</span></div><div class="q-grid" style="margin-bottom:10px">';for(var i=0;i<roqyaList.length;i++){html+='<div class="q-item '+(i==roqyaIndex?'active':'')+'" onclick="playRoqya('+i+')" style="font-size:11px">'+roqyaList[i].name.substring(0,20)+'</div>';}html+='</div><div style="display:flex;justify-content:center;gap:15px"><button id="roqyaPrev" style="background:#232e38;border:1px solid #3a4b5a;color:#4fc3f7;width:38px;height:38px;border-radius:50%">⏮</button><button id="roqyaPlayBtn" style="width:50px;height:50px;border-radius:50%;background:#4fc3f7;border:none;color:#0f1418;font-size:20px;cursor:pointer">▶</button><button id="roqyaNext" style="background:#232e38;border:1px solid #3a4b5a;color:#4fc3f7;width:38px;height:38px;border-radius:50%">⏭</button></div><div class="progress" id="roqyaProgress"><div class="progress-bar" id="roqyaProgressBar"></div></div></div><audio id="roqyaAudioEl" style="display:none"></audio>';return html;}
@@ -87,7 +89,6 @@ function initRoqya(){var a=document.getElementById('roqyaAudioEl');var b=documen
 setTimeout(initRoqya,200);
 document.getElementById('tab-masmou3a').onclick=function(){this.classList.add('active');document.getElementById('tab-maktouba').classList.remove('active');document.getElementById('roqyaContent').innerHTML=getRoqyaHTML();setTimeout(initRoqya,200);};
 document.getElementById('tab-maktouba').onclick=function(){this.classList.add('active');document.getElementById('tab-masmou3a').classList.remove('active');document.getElementById('roqyaContent').innerHTML=roqyaTextHTML;};
-
 var suras=["الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه","الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم","لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر","فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج","نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس","التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد","الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات","القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر","المسد","الإخلاص","الفلق","الناس"];
 var reciters={islam:"https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/",maher:"https://server12.mp3quran.net/maher/Rewayat-Hafs-A-n-Assem/"};
 var currentReciter="islam";
@@ -106,22 +107,36 @@ qAudio.addEventListener('ended',function(){if(currentIndex<113){playSurah(curren
 qAudio.addEventListener('play',function(){mainPlayBtn.textContent="⏸";});
 qAudio.addEventListener('pause',function(){mainPlayBtn.textContent="▶";});
 document.getElementById('progress').onclick=function(e){var r=this.getBoundingClientRect();qAudio.currentTime=((e.clientX-r.left)/r.width)*qAudio.duration;};
-
 async function loadPrayer(){
  try{
-  var ipData=await fetch('https://ipapi.co/json/').then(r=>r.json());
-  var lat=ipData.latitude;var lon=ipData.longitude;var city=ipData.city||"Giza";var country=ipData.country_name||"Egypt";
-  document.getElementById('loc').textContent=city+" 📍";
-  var data;
-  if(lat && lon){data=await fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=5`).then(r=>r.json());}
-  else{data=await fetch(`https://api.aladhan.com/v1/timingsByCity?city=${city}&country=${country}&method=5`).then(r=>r.json());}
-  var t=data.data.timings;
-  prayerTimings=t;
+  let lat, lon, cityName="الجيزة";
+  let usedGPS=false;
+  try{
+    const pos = await new Promise((res, rej)=>{navigator.geolocation.getCurrentPosition(res, rej, {enableHighAccuracy:true, timeout:8000});});
+    lat=pos.coords.latitude; lon=pos.coords.longitude; usedGPS=true;
+  }catch(gpsErr){
+    const ipData=await fetch('https://ipapi.co/json/').then(r=>r.json());
+    lat=ipData.latitude; lon=ipData.longitude; cityName=ipData.city||"الجيزة";
+  }
+  document.getElementById('loc').textContent="📍 جاري تحديد مدينتك...";
+  if(usedGPS){
+    try{
+      const rev=await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=ar`).then(r=>r.json());
+      cityName = rev.city || rev.locality || rev.principalSubdivision || "الجيزة";
+    }catch(e){}
+  }
+  const data=await fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=5`).then(r=>r.json());
+  const t=data.data.timings; prayerTimings=t;
+  document.getElementById('loc').textContent=cityName+" 📍";
   document.getElementById('prayerCard').innerHTML='<div class="row-time"><span>الفجر</span><span>'+t.Fajr.substring(0,5)+'</span></div><div class="row-time"><span>الظهر</span><span>'+t.Dhuhr.substring(0,5)+'</span></div><div class="row-time"><span>العصر</span><span>'+t.Asr.substring(0,5)+'</span></div><div class="row-time"><span>المغرب</span><span>'+t.Maghrib.substring(0,5)+'</span></div><div class="row-time"><span>العشاء</span><span>'+t.Isha.substring(0,5)+'</span></div>';
   document.getElementById('hDate').textContent=data.data.date.hijri.day+' '+data.data.date.hijri.month.ar+' '+data.data.date.hijri.year;
- }catch(e){document.getElementById('loc').textContent="Giza 📍";}
+  if(!notifEnabled){setTimeout(()=>{requestNotif(true);},3000);}
+ }catch(e){
+  document.getElementById('loc').textContent="الجيزة 📍";
+  document.getElementById('prayerCard').innerHTML='<div class="row-time"><span>الفجر</span><span>05:15</span></div><div class="row-time"><span>الظهر</span><span>11:55</span></div><div class="row-time"><span>العصر</span><span>15:05</span></div><div class="row-time"><span>المغرب</span><span>17:28</span></div><div class="row-time"><span>العشاء</span><span>18:46</span></div>';
+ }
 }
 loadPrayer();
 </script>
 </body>
-                                                                                   </html>
+</html>
