@@ -14,7 +14,7 @@ body{background:#0f1418;color:#e8ecef;display:flex;justify-content:center;paddin
 .doaa{margin:14px 0;background:#1c242c;border:1px solid #2a3542;border-radius:18px;padding:14px;font-size:14px;color:#4fc3f7;text-align:center}
 .badge{margin:10px auto;display:flex;justify-content:center;gap:6px;background:#1c242c;border:1px solid #2a3542;color:#4fc3f7;padding:8px 16px;border-radius:20px;font-size:13px;width:fit-content}
 .date{color:#4fc3f7;font-size:13px;margin-top:8px}
-.notif{margin:12px auto;display:block;background:transparent;border:1px solid #3a4b5a;color:#4fc3f7;padding:9px 18px;border-radius:20px;font-size:13px}
+.notif{margin:12px auto;display:block;background:transparent;border:1px solid #3a4b5a;color:#4fc3f7;padding:9px 18px;border-radius:20px;font-size:13px;cursor:pointer}
 .card-time{background:#1c242c;border:1px solid #3a4b5a;border-radius:22px;padding:16px;margin:16px 0}
 .row-time{display:flex;justify-content:space-between;background:#232e38;border-radius:14px;padding:14px 16px;margin-bottom:10px}
 .card-sebha{background:#1c242c;border:1px solid #3a4b5a;border-radius:22px;padding:24px;text-align:center;margin-bottom:16px}
@@ -40,42 +40,88 @@ body{background:#0f1418;color:#e8ecef;display:flex;justify-content:center;paddin
 </head>
 <body>
 <div class="wrap">
-<div class="top"><h1>عبد الصمد</h1><p class="date" id="gDate"></p><div class="doaa">اللهم أتمم عافيته ويسر أمره وبارك له </div><div class="badge" id="loc">Giza 📍</div><p class="date" id="hDate"></p><button class="notif">🔔 فعل تنبيه الأذان</button></div>
+<div class="top"><h1>عبد الصمد</h1><p class="date" id="gDate"></p><div class="doaa">اللهم أتمم عافيته ويسر أمره وبارك له </div><div class="badge" id="loc">جاري تحديد الموقع...</div><p class="date" id="hDate"></p><button class="notif" id="notifBtn">🔔 فعلي تنبيه الأذان</button></div>
 <div class="card-time" id="prayerCard"></div>
 <div class="card-sebha"><h3 id="zekrText" style="color:#4fc3f7">سبحان الله</h3><div class="circle" id="countBtn">0</div><div class="small"><button id="newWirdBtn">ورد جديد</button><button id="resetBtn">إعادة</button></div></div>
 <div class="card-box"><div class="title">الرقية الشرعية 🛡️</div><div class="tabs"><button class="tab active" id="tab-masmou3a">مسموعة</button><button class="tab" id="tab-maktouba">مكتوبة</button></div><div id="roqyaContent"></div></div>
-<div class="card-box"><div class="title">القرآن - إسلام صبحي 🎧</div><input class="search" id="searchSurah" placeholder="ابحث عن سورة..."><div class="q-grid" id="qList"></div><div class="player-box" id="playerBox"><div style="display:flex;justify-content:space-between;margin-bottom:10px"><span id="playerName" style="color:#4fc3f7;font-size:13px">▶ اضغط على سورة للتشغيل</span><span id="playerTime" style="color:#8a9aa8;font-size:12px">0:00 / 0:00</span></div><div style="display:flex;justify-content:center;gap:15px"><button id="prevBtn" style="background:#232e38;border:1px solid #3a4b5a;color:#4fc3f7;width:38px;height:38px;border-radius:50%">⏮</button><button class="play-btn" id="mainPlayBtn">▶</button><button id="nextBtn" style="background:#232e38;border:1px solid #3a4b5a;color:#4fc3f7;width:38px;height:38px;border-radius:50%">⏭</button></div><div class="progress" id="progress"><div class="progress-bar" id="progressBar"></div></div></div><audio id="qAudio"></audio></div>
+<div class="card-box"><div class="title">القرآن الكريم 🎧</div><div class="tabs"><button class="tab active" id="tab-islam">إسلام صبحي</button><button class="tab" id="tab-maher">ماهر المعيقلي</button></div><input class="search" id="searchSurah" placeholder="ابحث عن سورة..."><div class="q-grid" id="qList"></div><div class="player-box"><div style="display:flex;justify-content:space-between;margin-bottom:10px"><span id="playerName" style="color:#4fc3f7;font-size:13px">▶ اضغط على سورة للتشغيل</span><span id="playerTime" style="color:#8a9aa8;font-size:12px">0:00 / 0:00</span></div><div style="display:flex;justify-content:center;gap:15px"><button id="prevBtn" style="background:#232e38;border:1px solid #3a4b5a;color:#4fc3f7;width:38px;height:38px;border-radius:50%">⏮</button><button class="play-btn" id="mainPlayBtn">▶</button><button id="nextBtn" style="background:#232e38;border:1px solid #3a4b5a;color:#4fc3f7;width:38px;height:38px;border-radius:50%">⏭</button></div><div class="progress" id="progress"><div class="progress-bar" id="progressBar"></div></div></div><audio id="qAudio"></audio><audio id="adhanAudio" src="https://cdn.islamic.network/adhan/audio/128/ar_abdulrahmanalsudais.mp3" preload="none"></audio></div>
 <div class="ayah">﴿ إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَوْقُوتًا ﴾</div>
-<div class="footer"> created by dina alssawy <br>All Rights Reserved © 2026</div>
+<div class="footer">created by dina alssawy<br>All Rights Reserved © 2026</div>
 </div>
 <script>
 var weekdays=["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];var months=["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];var now=new Date();document.getElementById('gDate').textContent=weekdays[now.getDay()]+"، "+now.getDate()+" "+months[now.getMonth()]+" "+now.getFullYear();
 var azkar=["سبحان الله","الحمد لله","لا إله إلا الله","الله أكبر","أستغفر الله"];var awrad=["سبحان الله وبحمده 100 مرة","أستغفر الله العظيم 100 مرة","الصلاة على النبي 100 مرة","لا حول ولا قوة إلا بالله 100 مرة"];var idx=0;var cnt=0;var tEl=document.getElementById('zekrText');var cEl=document.getElementById('countBtn');function upd(){cEl.textContent=cnt;}upd();cEl.onclick=function(){cnt++;if(cnt>33){cnt=0;idx=(idx+1)%azkar.length;tEl.textContent=azkar[idx];}upd();};document.getElementById('resetBtn').onclick=function(){cnt=0;upd();};document.getElementById('newWirdBtn').onclick=function(){tEl.textContent=awrad[Math.floor(Math.random()*awrad.length)];cnt=0;upd();};
 function formatTime(s){if(isNaN(s))return"0:00";var m=Math.floor(s/60);var sec=Math.floor(s%60);return m+":"+(sec<10?"0"+sec:sec);}
-var roqyaAudioHTML='<div style="background:#0f1418;border:1px solid #2a3542;border-radius:14px;padding:12px"><div style="display:flex;justify-content:space-between;margin-bottom:10px"><span style="color:#4fc3f7;font-size:13px">▶ سورة البقرة - رقية</span><span id="roqyaTime" style="color:#8a9aa8;font-size:12px">0:00 / 0:00</span></div><div style="display:flex;justify-content:center"><button id="roqyaPlayBtn" style="width:50px;height:50px;border-radius:50%;background:#4fc3f7;border:none;color:#0f1418;font-size:20px;cursor:pointer">▶</button></div><div class="progress" id="roqyaProgress"><div class="progress-bar" id="roqyaProgressBar"></div></div></div><audio id="roqyaAudioEl" style="display:none"><source src="https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/002.mp3"></audio>';
-var roqyaTextHTML='<div style="line-height:2;font-size:14px;color:#d7e1eb">بسم الله أرقيك من كل شيء يؤذيك<br>من شر كل نفس أو عين حاسد الله يشفيك<br><br>الفاتحة 7 مرات - آية الكرسي - آخر آيتين من البقرة - المعوذات 3 مرات</div>';
-document.getElementById('roqyaContent').innerHTML=roqyaAudioHTML;
-function initRoqya(){var a=document.getElementById('roqyaAudioEl');var b=document.getElementById('roqyaPlayBtn');var bar=document.getElementById('roqyaProgressBar');var time=document.getElementById('roqyaTime');var prog=document.getElementById('roqyaProgress');if(!a)return;b.onclick=function(){if(a.paused){a.play();}else{a.pause();}};a.addEventListener('play',function(){b.textContent="⏸";});a.addEventListener('pause',function(){b.textContent="▶";});a.addEventListener('timeupdate',function(){bar.style.width=(a.currentTime/a.duration)*100+"%";time.textContent=formatTime(a.currentTime)+" / "+formatTime(a.duration);});prog.onclick=function(e){var r=this.getBoundingClientRect();a.currentTime=((e.clientX-r.left)/r.width)*a.duration;};}
-setTimeout(initRoqya,100);
-document.getElementById('tab-masmou3a').onclick=function(){this.classList.add('active');document.getElementById('tab-maktouba').classList.remove('active');document.getElementById('roqyaContent').innerHTML=roqyaAudioHTML;setTimeout(initRoqya,100);};
+
+var prayerTimings=null;
+var notifEnabled=localStorage.getItem('adhanNotif')==='1';
+function updateNotifBtn(){var b=document.getElementById('notifBtn');if(notifEnabled){b.textContent='✅ تم تفعيل تنبيه الأذان';}else{b.textContent='🔔 فعلي تنبيه الأذان';}}
+updateNotifBtn();
+document.getElementById('notifBtn').onclick=async function(){
+ if(!("Notification" in window)){alert('المتصفح لا يدعم الإشعارات');return;}
+ var perm=await Notification.requestPermission();
+ if(perm==='granted'){notifEnabled=true;localStorage.setItem('adhanNotif','1');updateNotifBtn();new Notification('تم تفعيل تنبيه الأذان 🕌',{body:'هنبعتلك إشعار مع كل أذان حسب مدينتك'});}else{alert('لازم توافقي على الإشعارات من إعدادات المتصفح');}
+};
+function checkAdhan(){
+ if(!notifEnabled||!prayerTimings)return;
+ var n=new Date();var cur=n.getHours().toString().padStart(2,'0')+':'+n.getMinutes().toString().padStart(2,'0');
+ for(var name in prayerTimings){
+   if(prayerTimings[name].substring(0,5)===cur){
+     var last=localStorage.getItem('lastAdhan');
+     if(last===cur+'-'+n.getDate())return;
+     localStorage.setItem('lastAdhan',cur+'-'+n.getDate());
+     document.getElementById('adhanAudio').play().catch(()=>{});
+     if(Notification.permission==='granted'){new Notification('حان الآن موعد أذان '+name,{body:'حسب توقيت '+document.getElementById('loc').textContent});}
+   }
+ }
+}
+setInterval(checkAdhan,30000);
+
+var roqyaList=[{name:"الرقية - الفاتحة وآية الكرسي",src:"https://server6.mp3quran.net/roqya/Rewayat-Hafs-A-n-Assem/001.mp3"},{name:"الرقية - البقرة كاملة",src:"https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/002.mp3"},{name:"الرقية - الإخلاص والفلق والناس",src:"https://server6.mp3quran.net/roqya/Rewayat-Hafs-A-n-Assem/112.mp3"},{name:"رقية الحسد والعين",src:"https://server6.mp3quran.net/roqya/Rewayat-Hafs-A-n-Assem/113.mp3"}];
+var roqyaIndex=0;
+function getRoqyaHTML(){var html='<div style="background:#0f1418;border:1px solid #2a3542;border-radius:14px;padding:12px"><div style="display:flex;justify-content:space-between;margin-bottom:10px"><span id="roqyaName" style="color:#4fc3f7;font-size:12px">▶ '+roqyaList[roqyaIndex].name+'</span><span id="roqyaTime" style="color:#8a9aa8;font-size:12px">0:00 / 0:00</span></div><div class="q-grid" style="margin-bottom:10px">';for(var i=0;i<roqyaList.length;i++){html+='<div class="q-item '+(i==roqyaIndex?'active':'')+'" onclick="playRoqya('+i+')" style="font-size:11px">'+roqyaList[i].name.substring(0,20)+'</div>';}html+='</div><div style="display:flex;justify-content:center;gap:15px"><button id="roqyaPrev" style="background:#232e38;border:1px solid #3a4b5a;color:#4fc3f7;width:38px;height:38px;border-radius:50%">⏮</button><button id="roqyaPlayBtn" style="width:50px;height:50px;border-radius:50%;background:#4fc3f7;border:none;color:#0f1418;font-size:20px;cursor:pointer">▶</button><button id="roqyaNext" style="background:#232e38;border:1px solid #3a4b5a;color:#4fc3f7;width:38px;height:38px;border-radius:50%">⏭</button></div><div class="progress" id="roqyaProgress"><div class="progress-bar" id="roqyaProgressBar"></div></div></div><audio id="roqyaAudioEl" style="display:none"></audio>';return html;}
+var roqyaTextHTML='<div style="line-height:2;font-size:14px;color:#d7e1eb">بسم الله أرقيك من كل شيء يؤذيك<br>من شر كل نفس أو عين حاسد الله يشفيك<br><br>الفاتحة 7 مرات - آية الكرسي - آخر آيتين من البقرة - الإخلاص والفلق والناس 3 مرات</div>';
+document.getElementById('roqyaContent').innerHTML=getRoqyaHTML();
+function playRoqya(i){roqyaIndex=i;document.getElementById('roqyaContent').innerHTML=getRoqyaHTML();setTimeout(function(){var a=document.getElementById('roqyaAudioEl');a.src=roqyaList[i].src;a.play();initRoqya();document.getElementById('roqyaName').textContent="▶ "+roqyaList[i].name;},100);}
+function initRoqya(){var a=document.getElementById('roqyaAudioEl');var b=document.getElementById('roqyaPlayBtn');var bar=document.getElementById('roqyaProgressBar');var time=document.getElementById('roqyaTime');var prog=document.getElementById('roqyaProgress');var prev=document.getElementById('roqyaPrev');var next=document.getElementById('roqyaNext');if(!a)return;if(!a.src)a.src=roqyaList[roqyaIndex].src;b.onclick=function(){if(a.paused){a.play();}else{a.pause();}};prev.onclick=function(){roqyaIndex=roqyaIndex>0?roqyaIndex-1:roqyaList.length-1;playRoqya(roqyaIndex);};next.onclick=function(){roqyaIndex=roqyaIndex<roqyaList.length-1?roqyaIndex+1:0;playRoqya(roqyaIndex);};a.onplay=function(){b.textContent="⏸";};a.onpause=function(){b.textContent="▶";};a.ontimeupdate=function(){if(a.duration){bar.style.width=(a.currentTime/a.duration)*100+"%";time.textContent=formatTime(a.currentTime)+" / "+formatTime(a.duration);}};a.onended=function(){roqyaIndex=roqyaIndex<roqyaList.length-1?roqyaIndex+1:0;playRoqya(roqyaIndex);};prog.onclick=function(e){var r=this.getBoundingClientRect();a.currentTime=((e.clientX-r.left)/r.width)*a.duration;};}
+setTimeout(initRoqya,200);
+document.getElementById('tab-masmou3a').onclick=function(){this.classList.add('active');document.getElementById('tab-maktouba').classList.remove('active');document.getElementById('roqyaContent').innerHTML=getRoqyaHTML();setTimeout(initRoqya,200);};
 document.getElementById('tab-maktouba').onclick=function(){this.classList.add('active');document.getElementById('tab-masmou3a').classList.remove('active');document.getElementById('roqyaContent').innerHTML=roqyaTextHTML;};
 
 var suras=["الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه","الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم","لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر","فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج","نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس","التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد","الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات","القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر","المسد","الإخلاص","الفلق","الناس"];
+var reciters={islam:"https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/",maher:"https://server12.mp3quran.net/maher/Rewayat-Hafs-A-n-Assem/"};
+var currentReciter="islam";
 var qListEl=document.getElementById('qList');var qAudio=document.getElementById('qAudio');var playerName=document.getElementById('playerName');var playerTime=document.getElementById('playerTime');var mainPlayBtn=document.getElementById('mainPlayBtn');var progressBar=document.getElementById('progressBar');var currentIndex=-1;
-function playSurah(num){currentIndex=num-1;qAudio.src='https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/'+String(num).padStart(3,'0')+'.mp3';qAudio.load();qAudio.play().catch(()=>{});playerName.textContent="▶ الآن: "+suras[currentIndex];mainPlayBtn.textContent="⏸";build(document.getElementById('searchSurah').value);}
+function playSurah(num){currentIndex=num-1;qAudio.src=reciters[currentReciter]+String(num).padStart(3,'0')+'.mp3';qAudio.load();qAudio.play().catch(()=>{});playerName.textContent="▶ الآن: "+suras[currentIndex]+" - "+(currentReciter=="islam"?"إسلام صبحي":"ماهر المعيقلي");mainPlayBtn.textContent="⏸";build(document.getElementById('searchSurah').value);}
 function build(f){f=f||'';qListEl.innerHTML='';for(var i=0;i<suras.length;i++){var name=suras[i];var num=i+1;if(f&&name.indexOf(f)===-1)continue;var div=document.createElement('div');div.className='q-item'+(i===currentIndex?' active':'');div.innerHTML='<span style="color:#8a9aa8">'+num+'</span><span>'+name+(i===currentIndex?' ▶':'')+'</span>';(function(n){div.onclick=function(){playSurah(n);};})(num);qListEl.appendChild(div);}}
 build();
 document.getElementById('searchSurah').addEventListener('input',function(e){build(e.target.value);});
+document.getElementById('tab-islam').onclick=function(){this.classList.add('active');document.getElementById('tab-maher').classList.remove('active');currentReciter="islam";if(currentIndex>=0)playSurah(currentIndex+1);};
+document.getElementById('tab-maher').onclick=function(){this.classList.add('active');document.getElementById('tab-islam').classList.remove('active');currentReciter="maher";if(currentIndex>=0)playSurah(currentIndex+1);};
 mainPlayBtn.onclick=function(){if(qAudio.paused){qAudio.play();}else{qAudio.pause();}};
 document.getElementById('nextBtn').onclick=function(){if(currentIndex<113)playSurah(currentIndex+2);};
 document.getElementById('prevBtn').onclick=function(){if(currentIndex>0)playSurah(currentIndex);};
-qAudio.addEventListener('timeupdate',function(){if(qAudio.duration){progressBar.style.width=(qAudio.currentTime/qAudio.duration)*100+"%";playerTime.textContent=formatTime(qAudio.currentTime)+" / "+formatTime(qAudio.duration);}if(qAudio.duration && qAudio.currentTime >= qAudio.duration - 0.8 && !qAudio._auto){qAudio._auto=true;setTimeout(function(){qAudio._auto=false;if(currentIndex<113)playSurah(currentIndex+2);},1000);}});
-qAudio.addEventListener('ended',function(){if(currentIndex<113){setTimeout(function(){playSurah(currentIndex+2);},700);}});
+qAudio.addEventListener('timeupdate',function(){if(qAudio.duration){progressBar.style.width=(qAudio.currentTime/qAudio.duration)*100+"%";playerTime.textContent=formatTime(qAudio.currentTime)+" / "+formatTime(qAudio.duration);}});
+qAudio.addEventListener('ended',function(){if(currentIndex<113){playSurah(currentIndex+2);}});
 qAudio.addEventListener('play',function(){mainPlayBtn.textContent="⏸";});
 qAudio.addEventListener('pause',function(){mainPlayBtn.textContent="▶";});
 document.getElementById('progress').onclick=function(e){var r=this.getBoundingClientRect();qAudio.currentTime=((e.clientX-r.left)/r.width)*qAudio.duration;};
-async function loadPrayer(){try{var ip=await fetch('https://ipapi.co/json/').then(r=>r.json());document.getElementById('loc').textContent=(ip.city||'Giza')+' 📍';var data=await fetch('https://api.aladhan.com/v1/timingsByCity?city='+(ip.city||'Giza')+'&country='+(ip.country_name||'Egypt')+'&method=5').then(r=>r.json());var t=data.data.timings;document.getElementById('prayerCard').innerHTML='<div class="row-time"><span>الفجر</span><span>'+t.Fajr.substring(0,5)+'</span></div><div class="row-time"><span>الظهر</span><span>'+t.Dhuhr.substring(0,5)+'</span></div><div class="row-time"><span>العصر</span><span>'+t.Asr.substring(0,5)+'</span></div><div class="row-time"><span>المغرب</span><span>'+t.Maghrib.substring(0,5)+'</span></div><div class="row-time"><span>العشاء</span><span>'+t.Isha.substring(0,5)+'</span></div>';document.getElementById('hDate').textContent=data.data.date.hijri.day+' '+data.data.date.hijri.month.ar+' '+data.data.date.hijri.year;}catch(e){}}
+
+async function loadPrayer(){
+ try{
+  var ipData=await fetch('https://ipapi.co/json/').then(r=>r.json());
+  var lat=ipData.latitude;var lon=ipData.longitude;var city=ipData.city||"Giza";var country=ipData.country_name||"Egypt";
+  document.getElementById('loc').textContent=city+" 📍";
+  var data;
+  if(lat && lon){data=await fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=5`).then(r=>r.json());}
+  else{data=await fetch(`https://api.aladhan.com/v1/timingsByCity?city=${city}&country=${country}&method=5`).then(r=>r.json());}
+  var t=data.data.timings;
+  prayerTimings=t;
+  document.getElementById('prayerCard').innerHTML='<div class="row-time"><span>الفجر</span><span>'+t.Fajr.substring(0,5)+'</span></div><div class="row-time"><span>الظهر</span><span>'+t.Dhuhr.substring(0,5)+'</span></div><div class="row-time"><span>العصر</span><span>'+t.Asr.substring(0,5)+'</span></div><div class="row-time"><span>المغرب</span><span>'+t.Maghrib.substring(0,5)+'</span></div><div class="row-time"><span>العشاء</span><span>'+t.Isha.substring(0,5)+'</span></div>';
+  document.getElementById('hDate').textContent=data.data.date.hijri.day+' '+data.data.date.hijri.month.ar+' '+data.data.date.hijri.year;
+ }catch(e){document.getElementById('loc').textContent="Giza 📍";}
+}
 loadPrayer();
 </script>
 </body>
-  </html>
+                                                                                   </html>
