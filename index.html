@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+here<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -40,13 +40,13 @@ body{background:#0f1418;color:#e8ecef;display:flex;justify-content:center;paddin
 </head>
 <body>
 <div class="wrap">
-<div class="top"><h1>عبد الصمد</h1><p class="date" id="gDate"></p><div class="doaa"> اللهم أتمم عافيته ويسر أمره وبارك له   class="badge" id="loc">Loading location...</div><p class="date" id="hDate"></p><button class="notif" id="notifBtn">🔔 فعلي تنبيه الأذان</button></div>
+<div class="top"><h1>عبد الصمد</h1><p class="date" id="gDate"></p><div class="doaa">  اللهم أتمم عافيته ويسر أمره وبارك له  class="badge" id="loc">Loading location...</div><p class="date" id="hDate"></p><button class="notif" id="notifBtn">🔔 فعلي تنبيه الأذان</button></div>
 <div class="card-time" id="prayerCard"></div>
 <div class="card-sebha"><h3 id="zekrText" style="color:#4fc3f7">سبحان الله</h3><div class="circle" id="countBtn">0</div><div class="small"><button id="newWirdBtn">ورد جديد</button><button id="resetBtn">إعادة</button></div></div>
 <div class="card-box"><div class="title">الرقية الشرعية 🛡️</div><div class="tabs"><button class="tab active" id="tab-masmou3a">مسموعة</button><button class="tab" id="tab-maktouba">مكتوبة</button></div><div id="roqyaContent"></div></div>
 <div class="card-box"><div class="title">القرآن الكريم 🎧</div><div class="tabs"><button class="tab active" id="tab-islam">إسلام صبحي</button><button class="tab" id="tab-maher">ماهر المعيقلي</button></div><input class="search" id="searchSurah" placeholder="ابحث عن سورة..."><div class="q-grid" id="qList"></div><div class="player-box"><div style="display:flex;justify-content:space-between;margin-bottom:10px"><span id="playerName" style="color:#4fc3f7;font-size:13px">▶ اضغط على سورة للتشغيل</span><span id="playerTime" style="color:#8a9aa8;font-size:12px">0:00 / 0:00</span></div><div style="display:flex;justify-content:center;gap:15px"><button id="prevBtn" style="background:#232e38;border:1px solid #3a4b5a;color:#4fc3f7;width:38px;height:38px;border-radius:50%">⏮</button><button class="play-btn" id="mainPlayBtn">▶</button><button id="nextBtn" style="background:#232e38;border:1px solid #3a4b5a;color:#4fc3f7;width:38px;height:38px;border-radius:50%">⏭</button></div><div class="progress" id="progress"><div class="progress-bar" id="progressBar"></div></div></div><audio id="qAudio"></audio><audio id="adhanAudio" src="https://cdn.islamic.network/adhan/audio/128/ar_abdulrahmanalsudais.mp3" preload="none"></audio></div>
 <div class="ayah">﴿ إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَوْقُوتًا ﴾</div>
-<div class="footer">created by dina alssawy<br>All Rights Reserved © 2026</div>
+<div class="footer"> created by dina alssawy<br>All Rights Reserved © 2026</div>
 </div>
 <script>
 var weekdays=["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];var months=["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];var now=new Date();document.getElementById('gDate').textContent=weekdays[now.getDay()]+"، "+now.getDate()+" "+months[now.getMonth()]+" "+now.getFullYear();
@@ -82,7 +82,7 @@ setInterval(checkAdhan,30000);
 var roqyaList=[
   {name:"الرقية - سورة البقرة",src:"https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/002.mp3"},
   {name:"رقية الحسد - الصافات",src:"https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/037.mp3"},
-  {name:"رقية السحر - الجن",src:"https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/072.mp3"},
+  {name:" رقية السحر  ",src:"https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/072.mp3"},
   {name:"المعوذات والإخلاص",src:"https://server14.mp3quran.net/islam/Rewayat-Hafs-A-n-Assem/112.mp3"}
 ];
 var roqyaIndex=0;
@@ -148,4 +148,4 @@ async function loadPrayer(){
 loadPrayer();
 </script>
 </body>
-                                                                                                                                                                                                             </html>
+ </html>
