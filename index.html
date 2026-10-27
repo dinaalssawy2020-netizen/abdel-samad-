@@ -40,7 +40,7 @@ body{background:#0f1418;color:#e8ecef;display:flex;justify-content:center;paddin
 </head>
 <body>
 <div class="wrap">
-<div class="top"><h1>عبد الصمد</h1><p class="date" id="gDate"></p><div class="doaa">اللهم أتمم عافيته ويسر أمره وبارك له </div><div class="badge" id="loc">جاري تحديد الموقع...</div><p class="date" id="hDate"></p><button class="notif" id="notifBtn">🔔 فعلي تنبيه الأذان</button></div>
+<div class="top"><h1>عبد الصمد</h1><p class="date" id="gDate"></p><div class="doaa"> اللهم أتمم عافيته ويسر أمره وبارك له   class="badge" id="loc">Loading location...</div><p class="date" id="hDate"></p><button class="notif" id="notifBtn">🔔 فعلي تنبيه الأذان</button></div>
 <div class="card-time" id="prayerCard"></div>
 <div class="card-sebha"><h3 id="zekrText" style="color:#4fc3f7">سبحان الله</h3><div class="circle" id="countBtn">0</div><div class="small"><button id="newWirdBtn">ورد جديد</button><button id="resetBtn">إعادة</button></div></div>
 <div class="card-box"><div class="title">الرقية الشرعية 🛡️</div><div class="tabs"><button class="tab active" id="tab-masmou3a">مسموعة</button><button class="tab" id="tab-maktouba">مكتوبة</button></div><div id="roqyaContent"></div></div>
@@ -112,36 +112,40 @@ qAudio.addEventListener('ended',function(){if(currentIndex<113){playSurah(curren
 qAudio.addEventListener('play',function(){mainPlayBtn.textContent="⏸";});
 qAudio.addEventListener('pause',function(){mainPlayBtn.textContent="▶";});
 document.getElementById('progress').onclick=function(e){var r=this.getBoundingClientRect();qAudio.currentTime=((e.clientX-r.left)/r.width)*qAudio.duration;};
+async function getEnglishCity(lat,lon){
+ try{
+  const rev = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&accept-language=en&zoom=10`).then(r=>r.json());
+  const a = rev.address || {};
+  let city = a.city || a.town || a.municipality || a.village || a.county || a.state || rev.name || "";
+  return city;
+ }catch(e){ return ""; }
+}
 async function loadPrayer(){
  try{
-  let lat, lon, cityName="الجيزة";
-  let usedGPS=false;
+  let lat, lon, cityName="";
   try{
-    const pos = await new Promise((res, rej)=>{navigator.geolocation.getCurrentPosition(res, rej, {enableHighAccuracy:true, timeout:8000});});
-    lat=pos.coords.latitude; lon=pos.coords.longitude; usedGPS=true;
+    const pos = await new Promise((res, rej)=>{navigator.geolocation.getCurrentPosition(res, rej, {enableHighAccuracy:true, timeout:5000});});
+    lat=pos.coords.latitude; lon=pos.coords.longitude;
+    cityName = await getEnglishCity(lat,lon);
   }catch(gpsErr){
     const ipData=await fetch('https://ipapi.co/json/').then(r=>r.json());
-    lat=ipData.latitude; lon=ipData.longitude; cityName=ipData.city||"الجيزة";
+    lat=ipData.latitude; lon=ipData.longitude;
+    let enCity = await getEnglishCity(lat,lon);
+    cityName = enCity || ipData.city || ipData.region || "Giza";
   }
-  document.getElementById('loc').textContent="📍 جاري تحديد مدينتك...";
-  if(usedGPS){
-    try{
-      const rev=await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=ar`).then(r=>r.json());
-      cityName = rev.city || rev.locality || rev.principalSubdivision || "الجيزة";
-    }catch(e){}
-  }
+  if(!cityName) cityName="Giza";
+  document.getElementById('loc').textContent=cityName+" 📍";
   const data=await fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=5`).then(r=>r.json());
   const t=data.data.timings; prayerTimings=t;
-  document.getElementById('loc').textContent=cityName+" 📍";
   document.getElementById('prayerCard').innerHTML='<div class="row-time"><span>الفجر</span><span>'+t.Fajr.substring(0,5)+'</span></div><div class="row-time"><span>الظهر</span><span>'+t.Dhuhr.substring(0,5)+'</span></div><div class="row-time"><span>العصر</span><span>'+t.Asr.substring(0,5)+'</span></div><div class="row-time"><span>المغرب</span><span>'+t.Maghrib.substring(0,5)+'</span></div><div class="row-time"><span>العشاء</span><span>'+t.Isha.substring(0,5)+'</span></div>';
   document.getElementById('hDate').textContent=data.data.date.hijri.day+' '+data.data.date.hijri.month.ar+' '+data.data.date.hijri.year;
   if(!notifEnabled){setTimeout(()=>{requestNotif(true);},3000);}
  }catch(e){
-  document.getElementById('loc').textContent="الجيزة 📍";
+  document.getElementById('loc').textContent="Giza 📍";
   document.getElementById('prayerCard').innerHTML='<div class="row-time"><span>الفجر</span><span>05:15</span></div><div class="row-time"><span>الظهر</span><span>11:55</span></div><div class="row-time"><span>العصر</span><span>15:05</span></div><div class="row-time"><span>المغرب</span><span>17:28</span></div><div class="row-time"><span>العشاء</span><span>18:46</span></div>';
  }
 }
 loadPrayer();
 </script>
 </body>
-                                                                                                                                                                                                         </html>
+                                                                                                                                                                                                             </html>
