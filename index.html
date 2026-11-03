@@ -44,7 +44,7 @@ const DOAA_TEXT = "اللهم أتمم عافيته ويسر أمره وبارك
 document.getElementById('doaaBox').textContent = DOAA_TEXT;
 var weekdays=["الأحد","الإثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"],months=["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"],now=new Date();
 document.getElementById('gDate').textContent=weekdays[now.getDay()]+"، "+now.getDate()+" "+months[now.getMonth()]+" "+now.getFullYear();
-var azkar=["سبحان الله","الحمد لله","لا إله إلا الله","الله أكبر","أستغفر الله"],awrad=["سبحان الله وبحمده 100 مرة","أستغفر الله العظيم 100 مرة","الصلاة على النبي 100 مرة","لا حول ولا قوة إلا بالله 100 مرة"],idx=0,cnt=0,tEl=document.getElementById('zekrText'),cEl=document.getElementById('countBtn');
+var azkar=["سبحان الله","الحمد لله","لا إله إلا الله","الله أكبر","أستغفر الله"],awrad=[" سبحان الله وبحمده سبحان الله العظيم ","أستغفر الله العظيم  ","الصلاة على النبي ","لا حول ولا قوة إلا بالله "],idx=0,cnt=0,tEl=document.getElementById('zekrText'),cEl=document.getElementById('countBtn');
 function upd(){cEl.textContent=cnt}upd();cEl.onclick=function(){cnt++;if(cnt>33){cnt=0;idx=(idx+1)%azkar.length;tEl.textContent=azkar[idx]}upd()};
 document.getElementById('resetBtn').onclick=function(){cnt=0;upd()};document.getElementById('newWirdBtn').onclick=function(){tEl.textContent=awrad[Math.floor(Math.random()*awrad.length)];cnt=0;upd()};
 function formatTime(s){if(isNaN(s))return"0:00";var m=Math.floor(s/60),sec=Math.floor(s%60);return m+":"+(sec<10?"0"+sec:sec)}
@@ -110,13 +110,13 @@ async function loadPrayer(){
   }
   if(!cityName) cityName="Giza";
   document.getElementById('loc').textContent=cityName+" 📍";
-  const data=await fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=5`).then(r=>r.json());
+  const data=await fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lon}&method=5&school=0`).then(r=>r.json());
   const t=data.data.timings; prayerTimings=t;
   document.getElementById('prayerCard').innerHTML='<div class="row-time"><span>الفجر</span><span>'+t.Fajr.substring(0,5)+'</span></div><div class="row-time"><span>الظهر</span><span>'+t.Dhuhr.substring(0,5)+'</span></div><div class="row-time"><span>العصر</span><span>'+t.Asr.substring(0,5)+'</span></div><div class="row-time"><span>المغرب</span><span>'+t.Maghrib.substring(0,5)+'</span></div><div class="row-time"><span>العشاء</span><span>'+t.Isha.substring(0,5)+'</span></div>';
   document.getElementById('hDate').textContent=data.data.date.hijri.day+' '+data.data.date.hijri.month.ar+' '+data.data.date.hijri.year;
  }catch(e){
   document.getElementById('loc').textContent="Giza 📍";
-  document.getElementById('prayerCard').innerHTML='<div class="row-time"><span>الفجر</span><span>05:38</span></div><div class="row-time"><span>الظهر</span><span>12:39</span></div><div class="row-time"><span>العصر</span><span>15:50</span></div><div class="row-time"><span>المغرب</span><span>18:13</span></div><div class="row-time"><span>العشاء</span><span>19:31</span></div>';
+  document.getElementById('prayerCard').innerHTML='<div class="row-time"><span>الفجر</span><span>04:42</span></div><div class="row-time"><span>الظهر</span><span>11:38</span></div><div class="row-time"><span>العصر</span><span>14:44</span></div><div class="row-time"><span>المغرب</span><span>17:06</span></div><div class="row-time"><span>العشاء</span><span>18:25</span></div>';
  }
 }
 loadPrayer();
