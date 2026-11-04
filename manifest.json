@@ -1,15 +1,17 @@
 {
-  "name": "عبد الصمد - مواقيت الصلاة والاذكار",
+  "name": "عبد الصمد",
   "short_name": "عبد الصمد",
-  "start_url": "/abdel-samad-/",
+  "description": "موقع عبد الصمد للصلاة والأذكار",
+  "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "background_color": "#0f1418",
+  "theme_color": "#0f1418",
   "icons": [
     {
       "src": "icon-512.png.jpg",
       "sizes": "512x512",
-      "type" "image/jpeg"
+      "type": "image/jpeg",
+      "purpose": "any"
     }
   ]
 }
