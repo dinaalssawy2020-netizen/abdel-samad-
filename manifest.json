@@ -1,12 +1,20 @@
 {
   "name": "عبد الصمد",
   "short_name": "عبد الصمد",
+  "id": "/abdel-samad-/",
   "description": "موقع عبد الصمد للصلاة والأذكار",
   "start_url": "./index.html",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#0f1418",
   "theme_color": "#0f1418",
   "icons": [
+    {
+      "src": "icon-512.png.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
     {
       "src": "icon-512.png.jpg",
       "sizes": "512x512",
